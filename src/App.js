@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import Loading from './components/Loading';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,19 +11,31 @@ import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
   return (
-    <div className="App">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Domains />
-        <Timeline />
-        <Prizes />
-        <FAQ />
-      </main>
-      <Footer />
-    </div>
+    <>
+      {isLoading ? (
+        <Loading onComplete={handleLoadingComplete} />
+      ) : (
+        <div className="App">
+          <Navbar />
+          <main>
+            <Hero />
+            <About />
+            <Domains />
+            <Timeline />
+            <Prizes />
+            <FAQ />
+          </main>
+          <Footer />
+        </div>
+      )}
+    </>
   );
 }
 

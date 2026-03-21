@@ -389,20 +389,47 @@
 
 @media (max-width: 768px) {
   .domains {
-    padding: 80px 1.5rem;
+    padding: 60px 1rem;
+  }
+
+  .domains .section-header {
+    margin-bottom: 2.5rem;
   }
 
   .problems-section {
-    padding: 1.5rem;
+    padding: 1.25rem;
+  }
+
+  .problems-container {
+    min-height: auto;
   }
 
   .problem-card {
     flex-direction: column;
-    padding: 1.25rem;
+    padding: 1rem;
   }
 
   .problem-arrow {
     display: none;
+  }
+
+  .domain-tab {
+    min-width: 140px;
+    padding: 1rem 0.75rem;
+  }
+
+  .tab-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .tab-name {
+    font-size: 0.95rem;
+  }
+
+  .tab-desc {
+    font-size: 0.8rem;
   }
 }
 
