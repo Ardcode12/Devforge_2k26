@@ -456,8 +456,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -478,6 +477,8 @@
     0 30px 80px rgba(0, 0, 0, 0.3),
     0 0 0 1px rgba(139, 69, 19, 0.1);
   border: 2px solid rgba(232, 160, 102, 0.3);
+  will-change: transform, opacity;
+  overscroll-behavior: contain;
 }
 
 .problem-modal::-webkit-scrollbar {

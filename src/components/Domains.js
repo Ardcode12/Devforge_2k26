@@ -234,10 +234,10 @@ const Domains = () => {
           >
             <motion.div
               className="problem-modal"
-              initial={{ opacity: 0, scale: 0.9, y: 50 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 50 }}
-              transition={{ type: 'spring', damping: 25 }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              transition={{ type: 'tween', ease: 'easeOut', duration: 0.25 }}
               onClick={(e) => e.stopPropagation()}
               style={{ '--modal-color': selectedProblem.domainColor }}
             >

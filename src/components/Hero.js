@@ -1,11 +1,36 @@
-import React, { useState, useEffect, Suspense, useRef } from 'react';
+import React, { useState, useEffect, Suspense, useRef, Component } from 'react';
 import { motion } from 'framer-motion';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, useAnimations, Environment } from '@react-three/drei';
 import { Calendar, Clock, MapPin, ChevronDown, Sparkles } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
 import './Hero.css';
 
-const Model = ({ scale = 2.5, position = [0, -1, 0], mouse }) => {
+// Error boundary to catch WebGL context failures on mobile
+class CanvasErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.warn('3D Canvas failed to load:', error.message);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // Return nothing — the page continues without the 3D model
+      return null;
+    }
+    return this.props.children;
+  }
+}
+
+const Model = ({ scale = 2.5, position = [0, -1, 0], mouse, isVisible }) => {
   const group = useRef();
   const { scene, animations } = useGLTF('/models/orange.glb');
   const { actions, names } = useAnimations(animations, group);
@@ -15,6 +40,12 @@ const Model = ({ scale = 2.5, position = [0, -1, 0], mouse }) => {
 
     // Play animation and schedule next with 3.5 second gap
     const playAndScheduleNext = () => {
+      // Only process animations if the model is visible on screen
+      if (!isVisible) {
+        timeoutId = setTimeout(playAndScheduleNext, 1000); // Check again in 1s
+        return;
+      }
+
       if (names.length > 0 && actions[names[0]]) {
         const action = actions[names[0]];
         action.reset();
@@ -34,11 +65,11 @@ const Model = ({ scale = 2.5, position = [0, -1, 0], mouse }) => {
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [actions, names]);
+  }, [actions, names, isVisible]);
 
   // Rotate model based on mouse position (left/right only) - keeping position fixed
   useFrame(() => {
-    if (group.current) {
+    if (group.current && isVisible) {
       // Only rotate, don't change position
       const targetRotationY = mouse.current.x * 1.2;
       group.current.rotation.y += (targetRotationY - group.current.rotation.y) * 0.1;
@@ -55,7 +86,7 @@ const Model = ({ scale = 2.5, position = [0, -1, 0], mouse }) => {
   );
 };
 
-const Scene = ({ scale, position }) => {
+const Scene = ({ scale, position, isVisible }) => {
   const mouse = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -65,9 +96,12 @@ const Scene = ({ scale, position }) => {
       mouse.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    // Only add mouse listener if visible
+    if (isVisible) {
+      window.addEventListener('mousemove', handleMouseMove);
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }
+  }, [isVisible]);
 
   return (
     <>
@@ -75,7 +109,7 @@ const Scene = ({ scale, position }) => {
       <directionalLight position={[10, 10, 5]} intensity={1} />
       <pointLight position={[-10, -10, -5]} intensity={0.5} color="#8b5a2b" />
       <Suspense fallback={null}>
-        <Model scale={scale} position={position} mouse={mouse} />
+        <Model scale={scale} position={position} mouse={mouse} isVisible={isVisible} />
         <Environment preset="city" />
       </Suspense>
     </>
@@ -151,6 +185,13 @@ const Hero = () => {
 
   const [modelSize, setModelSize] = useState(MODEL_SETTINGS.desktop.size);
   const [modelPosition, setModelPosition] = useState(MODEL_SETTINGS.desktop.position);
+
+  // Set up intersection observer to detect when Hero section is visible
+  const { ref: heroRef, inView: isVisible } = useInView({
+    triggerOnce: false,
+    threshold: 0, // Trigger as soon as 1px is visible
+    rootMargin: "50% 0px 50% 0px", // Keep it loaded slightly before/after scrolling past
+  });
 
   // Handle viewport width changes for responsive model settings
   useEffect(() => {
@@ -231,7 +272,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="hero">
+    <section id="home" className="hero" ref={heroRef}>
       <div className="hero-bg">
         <div className="hero-gradient"></div>
         <div className="hero-pattern"></div>
@@ -346,12 +387,23 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 1, delay: 1, type: 'spring', stiffness: 50, damping: 15 }}
         >
-          <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-            <Scene
-              scale={modelSize.scale}
-              position={[modelPosition.x, modelPosition.y, modelPosition.z]}
-            />
-          </Canvas>
+          <CanvasErrorBoundary>
+            {isVisible && (
+              <Canvas
+                camera={{ position: [0, 0, 5], fov: 50 }}
+                gl={{ powerPreference: 'high-performance', antialias: true }}
+                style={{ pointerEvents: 'auto' }}
+                // Demand frameloop only renders when requested - saves battery
+                frameloop={isVisible ? "always" : "demand"}
+              >
+                <Scene
+                  scale={modelSize.scale}
+                  position={[modelPosition.x, modelPosition.y, modelPosition.z]}
+                  isVisible={isVisible}
+                />
+              </Canvas>
+            )}
+          </CanvasErrorBoundary>
         </motion.div>
       </div>
 
