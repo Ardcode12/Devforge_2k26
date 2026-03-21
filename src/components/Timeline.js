@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Clock, Coffee, Users, Code, Award, PartyPopper,
-  Sunrise, Moon, Utensils, Lightbulb, Send, Trophy,
+  Sunrise, Moon, Utensils, Lightbulb, Trophy,
   ChevronLeft, ChevronRight
 } from 'lucide-react';
 import './Timeline.css';

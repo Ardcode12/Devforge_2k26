@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Zap, Mail, MapPin, Phone, Github, Twitter, Linkedin, Instagram, Heart } from 'lucide-react';
+import { Code2, Zap, MapPin, Phone, Heart } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
@@ -11,12 +11,6 @@ const Footer = () => {
     { name: 'FAQ', href: '#faq' },
   ];
 
-  const socialLinks = [
-    { icon: <Github size={20} />, href: '#', label: 'GitHub' },
-    { icon: <Twitter size={20} />, href: '#', label: 'Twitter' },
-    { icon: <Linkedin size={20} />, href: '#', label: 'LinkedIn' },
-    { icon: <Instagram size={20} />, href: '#', label: 'Instagram' },
-  ];
 
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
