@@ -36,19 +36,21 @@ const Model = ({ scale = 2.5, position = [0, -1, 0], mouse }) => {
     };
   }, [actions, names]);
 
-  // Rotate model based on mouse position (left/right only)
+  // Rotate model based on mouse position (left/right only) - keeping position fixed
   useFrame(() => {
     if (group.current) {
-      // Smooth rotation towards mouse (horizontal only)
+      // Only rotate, don't change position
       const targetRotationY = mouse.current.x * 1.2;
-
       group.current.rotation.y += (targetRotationY - group.current.rotation.y) * 0.1;
+
+      // Keep position fixed
+      group.current.position.set(position[0], position[1], position[2]);
     }
   });
 
   return (
-    <group ref={group}>
-      <primitive object={scene} scale={scale} position={position} />
+    <group ref={group} position={position}>
+      <primitive object={scene} scale={scale} />
     </group>
   );
 };
