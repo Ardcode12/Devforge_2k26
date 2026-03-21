@@ -1,11 +1,12 @@
 .hero {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding: 7rem 2rem 4rem;
+  padding: 5rem 4rem 2rem;
 }
 
 .hero-bg {
@@ -97,10 +98,39 @@
   }
 }
 
-.hero-content {
-  text-align: center;
-  max-width: 900px;
+/* Hero Layout - Split View */
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  width: 100%;
+  max-width: 1600px;
   z-index: 1;
+}
+
+.hero-content {
+  text-align: left;
+  z-index: 1;
+  padding-left: 2rem;
+}
+
+.hero-model {
+  width: 100%;
+  height: 750px;
+  position: relative;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-model canvas {
+  cursor: grab;
+}
+
+.hero-model canvas:active {
+  cursor: grabbing;
 }
 
 .hero-badge {
@@ -109,11 +139,11 @@
   gap: 0.5rem;
   background: linear-gradient(135deg, var(--brown-600) 0%, var(--blue-700) 100%);
   color: var(--white);
-  padding: 0.625rem 1.5rem;
+  padding: 0.5rem 1.25rem;
   border-radius: 50px;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   box-shadow: 0 8px 30px rgba(139, 69, 19, 0.25);
 }
 
@@ -135,10 +165,10 @@
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 14vw, 8rem);
+  font-size: clamp(2.5rem, 10vw, 5rem);
   font-weight: 900;
   line-height: 1;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   letter-spacing: -0.03em;
 }
 
@@ -159,35 +189,34 @@
   font-size: 0.3em;
   color: var(--brown-500);
   letter-spacing: 0.4em;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   font-weight: 700;
 }
 
 .hero-subtitle {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: var(--brown-600);
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .hero-description {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: var(--gray-600);
-  max-width: 650px;
-  margin: 0 auto 2.5rem;
-  line-height: 1.8;
+  max-width: 500px;
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
 }
 
 .hero-info {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .info-item {
@@ -211,16 +240,16 @@
 }
 
 .countdown {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .countdown-label {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: var(--gray-600);
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-weight: 600;
@@ -232,30 +261,29 @@
 
 .countdown-grid {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .countdown-item {
   background: linear-gradient(145deg, var(--brown-800) 0%, var(--brown-700) 100%);
-  border-radius: 20px;
-  padding: 1.5rem 1.75rem;
-  min-width: 100px;
-  box-shadow: 0 15px 50px rgba(93, 58, 26, 0.35);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  min-width: 80px;
+  box-shadow: 0 10px 40px rgba(93, 58, 26, 0.35);
   border: 1px solid rgba(232, 160, 102, 0.2);
   transition: all 0.3s ease;
 }
 
 .countdown-item:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 60px rgba(93, 58, 26, 0.45);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(93, 58, 26, 0.45);
 }
 
 .countdown-number {
   display: block;
   font-family: var(--font-display);
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 800;
   color: var(--white);
   line-height: 1;
@@ -264,24 +292,23 @@
 
 .countdown-text {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: var(--brown-200);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
   font-weight: 600;
 }
 
 .countdown-separator {
   font-family: var(--font-display);
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--brown-600);
 }
 
 .hero-buttons {
   display: flex;
-  justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
@@ -290,9 +317,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1.125rem 2.5rem;
+  padding: 0.875rem 2rem;
   border-radius: 50px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -325,13 +352,13 @@
 
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   cursor: pointer;
   background: none;
   border: none;
@@ -371,13 +398,55 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hero {
-    padding: 6rem 1.5rem 3rem;
+    padding: 5rem 2rem 2rem;
+  }
+
+  .hero-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero-content {
+    text-align: center;
+    order: 1;
+    padding-left: 0;
+  }
+
+  .hero-model {
+    height: 350px;
+    order: 2;
+  }
+
+  .hero-description {
+    margin: 0 auto 1.5rem;
   }
 
   .hero-info {
-    gap: 1rem;
+    justify-content: center;
+  }
+
+  .countdown-grid {
+    justify-content: center;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 5rem 1.5rem 2rem;
+  }
+
+  .hero-model {
+    height: 300px;
+  }
+
+  .hero-info {
+    gap: 0.75rem;
   }
 
   .info-divider {
@@ -386,16 +455,16 @@
 
   .countdown-grid {
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .countdown-item {
-    min-width: 75px;
-    padding: 1.25rem 1rem;
+    min-width: 65px;
+    padding: 0.75rem 0.75rem;
   }
 
   .countdown-number {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .countdown-separator {

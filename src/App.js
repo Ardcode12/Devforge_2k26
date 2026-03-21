@@ -7,7 +7,6 @@ import Domains from './components/Domains';
 import Timeline from './components/Timeline';
 import Prizes from './components/Prizes';
 import FAQ from './components/FAQ';
-import Register from './components/Register';
 import Footer from './components/Footer';
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
         <Timeline />
         <Prizes />
         <FAQ />
-        <Register />
       </main>
       <Footer />
     </div>

@@ -1,7 +1,85 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, MapPin, Users, ChevronDown, Sparkles } from 'lucide-react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { OrbitControls, useGLTF, useAnimations, Environment } from '@react-three/drei';
+import { Calendar, Clock, MapPin, ChevronDown, Sparkles } from 'lucide-react';
 import './Hero.css';
+
+const Model = ({ scale = 2.5, position = [0, -1, 0], mouse }) => {
+  const group = useRef();
+  const { scene, animations } = useGLTF('/models/orange.glb');
+  const { actions, names } = useAnimations(animations, group);
+
+  useEffect(() => {
+    let timeoutId;
+
+    // Play animation and schedule next with 3.5 second gap
+    const playAndScheduleNext = () => {
+      if (names.length > 0 && actions[names[0]]) {
+        const action = actions[names[0]];
+        action.reset();
+        action.setLoop(1, 1); // Play once
+        action.clampWhenFinished = true;
+        action.play();
+
+        // Get animation duration and schedule next after animation + 3.5 sec gap
+        const duration = action.getClip().duration * 1000;
+        timeoutId = setTimeout(playAndScheduleNext, duration + 3500);
+      }
+    };
+
+    // Play first animation immediately
+    playAndScheduleNext();
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [actions, names]);
+
+  // Rotate model based on mouse position (left/right only)
+  useFrame(() => {
+    if (group.current) {
+      // Smooth rotation towards mouse (horizontal only)
+      const targetRotationY = mouse.current.x * 1.2;
+
+      group.current.rotation.y += (targetRotationY - group.current.rotation.y) * 0.1;
+    }
+  });
+
+  return (
+    <group ref={group}>
+      <primitive object={scene} scale={scale} position={position} />
+    </group>
+  );
+};
+
+const Scene = ({ scale, position }) => {
+  const mouse = useRef({ x: 0, y: 0 });
+  const { size } = useThree();
+
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      // Normalize mouse position to -1 to 1
+      mouse.current.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <>
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[10, 10, 5]} intensity={1} />
+      <pointLight position={[-10, -10, -5]} intensity={0.5} color="#8b5a2b" />
+      <Suspense fallback={null}>
+        <Model scale={scale} position={position} mouse={mouse} />
+        <Environment preset="city" />
+      </Suspense>
+    </>
+  );
+};
 
 const Hero = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -12,7 +90,7 @@ const Hero = () => {
   });
 
   useEffect(() => {
-    const targetDate = new Date('2026-04-15T09:00:00');
+    const targetDate = new Date('2026-04-10T09:00:00');
 
     const timer = setInterval(() => {
       const now = new Date();
@@ -70,104 +148,116 @@ const Hero = () => {
         </div>
       </div>
 
-      <motion.div
-        className="hero-content"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div className="hero-badge" variants={itemVariants}>
-          <Sparkles size={16} />
-          <span>30 Hours of Innovation</span>
+      <div className="hero-layout">
+        <motion.div
+          className="hero-content"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div className="hero-badge" variants={itemVariants}>
+            <Sparkles size={16} />
+            <span>30 Hours of Innovation</span>
+          </motion.div>
+
+          <motion.h1 className="hero-title" variants={itemVariants}>
+            <span className="title-dev">DEV</span>
+            <span className="title-forge">FORGE</span>
+            <span className="title-year">2K26</span>
+          </motion.h1>
+
+          <motion.p className="hero-subtitle" variants={itemVariants}>
+            Code. Create. Conquer.
+          </motion.p>
+
+          <motion.p className="hero-description" variants={itemVariants}>
+            Join the ultimate 30-hour hackathon experience where innovation meets creativity.
+            Build groundbreaking solutions, collaborate with brilliant minds, and compete for amazing prizes.
+          </motion.p>
+
+          <motion.div className="hero-info" variants={itemVariants}>
+            <div className="info-item">
+              <Calendar size={20} />
+              <span>April 10-11, 2026</span>
+            </div>
+            <div className="info-divider" />
+            <div className="info-item">
+              <Clock size={20} />
+              <span>Prelims: April 3</span>
+            </div>
+            <div className="info-divider" />
+            <div className="info-item">
+              <MapPin size={20} />
+              <span>Kongu Engineering College</span>
+            </div>
+          </motion.div>
+
+          <motion.div className="countdown" variants={itemVariants}>
+            <h3 className="countdown-label">
+              <Clock size={18} />
+              <span>Event Starts In</span>
+            </h3>
+            <div className="countdown-grid">
+              <div className="countdown-item">
+                <span className="countdown-number">{String(timeLeft.days).padStart(2, '0')}</span>
+                <span className="countdown-text">Days</span>
+              </div>
+              <div className="countdown-separator">:</div>
+              <div className="countdown-item">
+                <span className="countdown-number">{String(timeLeft.hours).padStart(2, '0')}</span>
+                <span className="countdown-text">Hours</span>
+              </div>
+              <div className="countdown-separator">:</div>
+              <div className="countdown-item">
+                <span className="countdown-number">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                <span className="countdown-text">Minutes</span>
+              </div>
+              <div className="countdown-separator">:</div>
+              <div className="countdown-item">
+                <span className="countdown-number">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                <span className="countdown-text">Seconds</span>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div className="hero-buttons" variants={itemVariants}>
+            <motion.a
+              href="https://forms.google.com/your-form-url"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+              whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(139, 69, 19, 0.35)' }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Register Now
+            </motion.a>
+            <motion.a
+              href="#about"
+              className="btn btn-secondary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('#about');
+              }}
+            >
+              Learn More
+            </motion.a>
+          </motion.div>
         </motion.div>
 
-        <motion.h1 className="hero-title" variants={itemVariants}>
-          <span className="title-dev">DEV</span>
-          <span className="title-forge">FORGE</span>
-          <span className="title-year">2K26</span>
-        </motion.h1>
-
-        <motion.p className="hero-subtitle" variants={itemVariants}>
-          Code. Create. Conquer.
-        </motion.p>
-
-        <motion.p className="hero-description" variants={itemVariants}>
-          Join the ultimate 30-hour hackathon experience where innovation meets creativity.
-          Build groundbreaking solutions, collaborate with brilliant minds, and compete for amazing prizes.
-        </motion.p>
-
-        <motion.div className="hero-info" variants={itemVariants}>
-          <div className="info-item">
-            <Calendar size={20} />
-            <span>April 15-16, 2026</span>
-          </div>
-          <div className="info-divider" />
-          <div className="info-item">
-            <MapPin size={20} />
-            <span>College Campus</span>
-          </div>
-          <div className="info-divider" />
-          <div className="info-item">
-            <Users size={20} />
-            <span>500+ Participants</span>
-          </div>
+        <motion.div
+          className="hero-model"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 5 }}
+        >
+          <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+            {/* Adjust scale and position here */}
+            <Scene scale={1.4} position={[-0.5, -1.7, 0]} />
+          </Canvas>
         </motion.div>
-
-        <motion.div className="countdown" variants={itemVariants}>
-          <h3 className="countdown-label">
-            <Clock size={18} />
-            <span>Event Starts In</span>
-          </h3>
-          <div className="countdown-grid">
-            <div className="countdown-item">
-              <span className="countdown-number">{String(timeLeft.days).padStart(2, '0')}</span>
-              <span className="countdown-text">Days</span>
-            </div>
-            <div className="countdown-separator">:</div>
-            <div className="countdown-item">
-              <span className="countdown-number">{String(timeLeft.hours).padStart(2, '0')}</span>
-              <span className="countdown-text">Hours</span>
-            </div>
-            <div className="countdown-separator">:</div>
-            <div className="countdown-item">
-              <span className="countdown-number">{String(timeLeft.minutes).padStart(2, '0')}</span>
-              <span className="countdown-text">Minutes</span>
-            </div>
-            <div className="countdown-separator">:</div>
-            <div className="countdown-item">
-              <span className="countdown-number">{String(timeLeft.seconds).padStart(2, '0')}</span>
-              <span className="countdown-text">Seconds</span>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div className="hero-buttons" variants={itemVariants}>
-          <motion.a
-            href="#register"
-            className="btn btn-primary"
-            whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(139, 69, 19, 0.35)' }}
-            whileTap={{ scale: 0.95 }}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('#register');
-            }}
-          >
-            Register Now
-          </motion.a>
-          <motion.a
-            href="#about"
-            className="btn btn-secondary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('#about');
-            }}
-          >
-            Learn More
-          </motion.a>
-        </motion.div>
-      </motion.div>
+      </div>
 
       <motion.button
         className="scroll-indicator"

@@ -1,82 +1,126 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, Cpu, Leaf, ChevronRight, ArrowRight } from 'lucide-react';
+import { Brain, Shield, Smartphone, ChevronRight, ArrowRight, X, Target, CheckCircle, Lightbulb } from 'lucide-react';
 import './Domains.css';
 
 const Domains = () => {
   const [activeDomain, setActiveDomain] = useState(0);
+  const [selectedProblem, setSelectedProblem] = useState(null);
 
   const domains = [
     {
       icon: <Brain size={32} />,
-      name: 'AI & Machine Learning',
+      name: 'Artificial Intelligence',
       color: '#2563eb',
-      description: 'Harness the power of artificial intelligence to solve complex problems and create intelligent solutions.',
+      description: 'Harness the power of artificial intelligence to solve complex problems and create intelligent solutions that transform industries.',
       problems: [
         {
           id: 1,
-          title: 'Smart Healthcare Assistant',
-          description: 'Develop an AI-powered healthcare assistant that can analyze symptoms, suggest preliminary diagnoses, and recommend when to seek professional medical help.',
+          title: 'AI-Powered Test Case Generator',
+          description: 'Build an AI system that takes simple business requirements in natural language and generates relevant test cases with positive and negative scenarios.',
+          detailedDescription: 'Build an AI-powered system that can take simple business requirements written in natural language and generate relevant test cases. The system should identify key scenarios, including positive and negative cases, and organize them in a structured format. Participants may optionally simulate test execution or visualize results through a simple interface.',
+          objectives: [
+            'Develop intelligent understanding of natural language requirements',
+            'Generate comprehensive test cases including positive and negative scenarios',
+            'Organize test cases in a structured, readable format',
+            'Optionally simulate test execution or visualize results through an interface',
+          ],
+          deliverables: ['Working prototype', 'Test case output samples', 'Demo presentation'],
         },
         {
           id: 2,
-          title: 'Educational Content Personalization',
-          description: 'Create a machine learning system that adapts educational content based on individual learning patterns, strengths, and areas needing improvement.',
-        },
-        {
-          id: 3,
-          title: 'Fake News Detection System',
-          description: 'Build an NLP-based solution to identify and flag potentially misleading or false information across social media and news platforms.',
+          title: 'AI-Powered Incident Analyzer',
+          description: 'Create an AI system that analyzes incident reports or system logs to classify them by severity, category, and identify potential root causes.',
+          detailedDescription: 'Build an AI-powered system that can analyze incident reports or system logs and automatically classify them based on severity, category, and potential root cause. The system should provide meaningful insights such as identifying recurring issues, suggesting possible resolutions, and prioritizing critical incidents. Participants may use structured or unstructured data and present results through a simple dashboard or visualization.',
+          objectives: [
+            'Implement intelligent analysis and pattern recognition on logs/reports',
+            'Classify incidents by severity, category, and potential root cause',
+            'Identify recurring issues and suggest possible resolutions',
+            'Prioritize critical incidents and present actionable insights via dashboard',
+          ],
+          deliverables: ['Analysis system', 'Dashboard/visualization', 'Documentation'],
         },
       ],
     },
     {
-      icon: <Cpu size={32} />,
-      name: 'Web3 & Blockchain',
-      color: '#8b5a2b',
-      description: 'Explore decentralized technologies and build the future of trustless, transparent digital systems.',
+      icon: <Shield size={32} />,
+      name: 'Cyber Security',
+      color: '#dc2626',
+      description: 'Build robust security solutions that protect digital assets, detect threats, and ensure data privacy in an increasingly connected world.',
       problems: [
         {
           id: 1,
-          title: 'Decentralized Identity Verification',
-          description: 'Create a blockchain-based identity management system that allows users to control and share their credentials securely without centralized authorities.',
+          title: 'AI-Driven Web Application Security Suite',
+          description: 'Create a security suite that filters and blocks attacks like SQL Injection, XSS, CSRF, RCE while continuously scanning for vulnerabilities and suggesting code-level fixes.',
+          detailedDescription: 'Build a prototype or working model that can filter and block attacks like SQL Injection, XSS, CSRF, RCE, etc. The system should continuously scan for vulnerabilities and suggest code-level fixes. It must support different languages and frameworks. Input includes HTTP/HTTPS requests and application code-base. Expected output: attack prevention alerts, vulnerability reports, and remediation suggestions.',
+          objectives: [
+            'Implement real-time WAF with auto-logging of blocked requests',
+            'Build AI Scanner for OWASP Top 10 vulnerabilities',
+            'Provide fix recommendations with code snippets',
+            'Support multiple languages and frameworks',
+          ],
+          deliverables: ['Security suite prototype', 'Vulnerability reports', 'Demo presentation'],
         },
         {
           id: 2,
-          title: 'Transparent Supply Chain Tracker',
-          description: 'Develop a Web3 solution to track products from source to consumer, ensuring authenticity and ethical sourcing throughout the supply chain.',
-        },
-        {
-          id: 3,
-          title: 'DAO for Community Governance',
-          description: 'Build a decentralized autonomous organization platform for local communities to make collective decisions on resource allocation and initiatives.',
+          title: 'Insider Threat & Zero Trust Monitoring System',
+          description: 'Design a Zero Trust Model where every access is continuously verified and insider anomalies are flagged with risk scoring.',
+          detailedDescription: 'Design a Zero Trust Model where every access is continuously verified, and insider anomalies are flagged. Inputs include user login records, file access logs, and device fingerprints. Expected output: Zero Trust Prototype for Enterprise, insider risk score, and access decisions (Allow/Deny). The system should implement User and Entity Behavior Analytics with micro-segmentation of access.',
+          objectives: [
+            'Implement User and Entity Behavior Analytics (UEBA)',
+            'Create micro-segmentation of access controls',
+            'Build insider risk scoring system with Allow/Deny decisions',
+            'Design dashboard displaying suspicious activities',
+          ],
+          deliverables: ['Zero Trust prototype', 'Risk scoring system', 'Security dashboard'],
         },
       ],
     },
     {
-      icon: <Leaf size={32} />,
-      name: 'Sustainability & Green Tech',
+      icon: <Smartphone size={32} />,
+      name: 'Mobile Application',
       color: '#059669',
-      description: 'Develop innovative solutions that address environmental challenges and promote sustainable living.',
+      description: 'Create innovative mobile applications that solve real-world problems and deliver exceptional user experiences on smartphones and tablets.',
       problems: [
         {
           id: 1,
-          title: 'Carbon Footprint Calculator & Reducer',
-          description: 'Create an application that tracks individual or organizational carbon emissions and provides actionable recommendations for reduction.',
+          title: 'Community Connect App',
+          description: 'Develop a mobile application that brings communities together, enabling local connections, resource sharing, and collaborative problem-solving.',
+          detailedDescription: 'Build a mobile application that connects people within a community, enabling them to share resources, organize events, and collaborate on local initiatives. The app should foster meaningful connections and promote community engagement.',
+          objectives: [
+            'Create user profiles with community interests',
+            'Implement resource sharing and skill exchange features',
+            'Build event organization and management system',
+            'Design real-time messaging and notification system',
+          ],
+          techStack: ['React Native/Flutter', 'Firebase', 'Node.js', 'Cloud Services'],
+          deliverables: ['Mobile app (iOS/Android)', 'Backend API', 'User documentation'],
         },
         {
           id: 2,
-          title: 'Smart Waste Management System',
-          description: 'Develop an IoT-integrated platform for optimizing waste collection routes, promoting recycling, and reducing landfill contributions.',
-        },
-        {
-          id: 3,
-          title: 'Sustainable Agriculture Advisor',
-          description: 'Build a solution that helps farmers implement sustainable practices through crop rotation suggestions, water management, and organic pest control guidance.',
+          title: 'Smart Lifestyle Manager',
+          description: 'Create a comprehensive mobile app that helps users manage daily activities, track habits, and improve productivity through intelligent features.',
+          detailedDescription: 'Design a smart lifestyle management app that helps users organize their daily routines, track habits, set goals, and improve overall productivity. The app should provide insights and suggestions based on user patterns.',
+          objectives: [
+            'Build habit tracking with streak management',
+            'Implement goal setting and progress visualization',
+            'Create smart reminders and scheduling features',
+            'Design analytics dashboard for personal insights',
+          ],
+          techStack: ['React Native/Flutter', 'Local Storage', 'Push Notifications', 'Charts Library'],
+          deliverables: ['Mobile app', 'Progress tracking system', 'User guide'],
         },
       ],
     },
   ];
+
+  const openProblemModal = (problem, domainColor, domainName) => {
+    setSelectedProblem({ ...problem, domainColor, domainName });
+  };
+
+  const closeProblemModal = () => {
+    setSelectedProblem(null);
+  };
 
   return (
     <section id="domains" className="domains">
@@ -156,6 +200,7 @@ const Domains = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
                       whileHover={{ scale: 1.02 }}
+                      onClick={() => openProblemModal(problem, domains[activeDomain].color, domains[activeDomain].name)}
                     >
                       <div className="problem-number">
                         <span>{String(index + 1).padStart(2, '0')}</span>
@@ -163,6 +208,7 @@ const Domains = () => {
                       <div className="problem-content">
                         <h4 className="problem-title">{problem.title}</h4>
                         <p className="problem-description">{problem.description}</p>
+                        <span className="click-hint">Click for details</span>
                       </div>
                       <ArrowRight className="problem-arrow" size={20} />
                     </motion.div>
@@ -173,6 +219,72 @@ const Domains = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Problem Detail Modal */}
+      <AnimatePresence>
+        {selectedProblem && (
+          <motion.div
+            className="problem-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeProblemModal}
+          >
+            <motion.div
+              className="problem-modal"
+              initial={{ opacity: 0, scale: 0.9, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 50 }}
+              transition={{ type: 'spring', damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+              style={{ '--modal-color': selectedProblem.domainColor }}
+            >
+              <button className="modal-close" onClick={closeProblemModal}>
+                <X size={24} />
+              </button>
+
+              <div className="modal-header">
+                <span className="modal-domain">{selectedProblem.domainName}</span>
+                <h2 className="modal-title">{selectedProblem.title}</h2>
+              </div>
+
+              <div className="modal-body">
+                <div className="modal-section">
+                  <div className="modal-section-header">
+                    <Lightbulb size={20} />
+                    <h3>Problem Overview</h3>
+                  </div>
+                  <p>{selectedProblem.detailedDescription}</p>
+                </div>
+
+                <div className="modal-section">
+                  <div className="modal-section-header">
+                    <Target size={20} />
+                    <h3>Objectives</h3>
+                  </div>
+                  <ul className="modal-objectives">
+                    {selectedProblem.objectives.map((objective, index) => (
+                      <li key={index}>
+                        <CheckCircle size={16} />
+                        <span>{objective}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="modal-section">
+                  <h3>Deliverables</h3>
+                  <div className="modal-tags">
+                    {selectedProblem.deliverables.map((item, index) => (
+                      <span key={index} className="modal-tag deliverable">{item}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

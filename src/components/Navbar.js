@@ -17,6 +17,7 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'About', href: '#about' },
+    { name: 'Domains', href: '#domains' },
     { name: 'Timeline', href: '#timeline' },
     { name: 'Prizes', href: '#prizes' },
     { name: 'FAQ', href: '#faq' },
@@ -82,12 +83,10 @@ const Navbar = () => {
             </motion.a>
           ))}
           <motion.a
-            href="#register"
+            href="https://forms.google.com/your-form-url"
+            target="_blank"
+            rel="noopener noreferrer"
             className="nav-register"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('#register');
-            }}
             whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(139, 69, 19, 0.3)' }}
             whileTap={{ scale: 0.95 }}
           >
@@ -126,12 +125,10 @@ const Navbar = () => {
               </motion.a>
             ))}
             <motion.a
-              href="#register"
+              href="https://forms.google.com/your-form-url"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mobile-register"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('#register');
-              }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: navItems.length * 0.05 }}

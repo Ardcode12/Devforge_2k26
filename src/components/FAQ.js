@@ -9,11 +9,11 @@ const FAQ = () => {
   const faqs = [
     {
       question: 'Who can participate in DevForge 2K26?',
-      answer: 'DevForge 2K26 is open to all college students currently enrolled in undergraduate or postgraduate programs. You can participate individually or in teams of up to 4 members.',
+      answer: 'DevForge 2K26 is open to all college students currently enrolled in undergraduate or postgraduate programs. You can participate individually or in teams of up to 3 members.',
     },
     {
       question: 'What is the team size limit?',
-      answer: 'Teams can have a minimum of 1 and a maximum of 4 members. We encourage diverse teams with varied skill sets for the best experience.',
+      answer: 'Teams can have a minimum of 1 and a maximum of 3 members. We encourage diverse teams with varied skill sets for the best experience.',
     },
     {
       question: 'Is there a registration fee?',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Lightbulb, Users, Trophy, Zap, Globe } from 'lucide-react';
+import { Target, Lightbulb, Users, Trophy, Zap, Award, Coffee } from 'lucide-react';
 import './About.css';
 
 const About = () => {
@@ -13,7 +13,7 @@ const About = () => {
     {
       icon: <Users size={28} />,
       title: 'Team Collaboration',
-      description: 'Form teams of up to 4 members and build something extraordinary together',
+      description: 'Form teams of up to 3 members and build something extraordinary together',
     },
     {
       icon: <Lightbulb size={28} />,
@@ -23,17 +23,17 @@ const About = () => {
     {
       icon: <Trophy size={28} />,
       title: 'Amazing Prizes',
-      description: 'Compete for exciting prizes, swag, and recognition from top companies',
+      description: 'Compete for exciting prizes worth thousands for each problem statement',
     },
     {
-      icon: <Globe size={28} />,
-      title: 'Real-World Impact',
-      description: 'Solve problems that matter and create solutions with lasting impact',
+      icon: <Award size={28} />,
+      title: 'Certificates For All',
+      description: 'Every participant receives a participation certificate to showcase their skills',
     },
     {
-      icon: <Target size={28} />,
-      title: '3 Unique Domains',
-      description: 'Choose from diverse challenge domains matching your interests',
+      icon: <Coffee size={28} />,
+      title: 'Food & Refreshments',
+      description: 'Stay energized with complimentary food and refreshments throughout the event',
     },
   ];
 
@@ -104,7 +104,7 @@ const About = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <div className="stat-item">
-            <span className="stat-number">500+</span>
+            <span className="stat-number">50+</span>
             <span className="stat-label">Participants</span>
           </div>
           <div className="stat-item">
@@ -116,8 +116,8 @@ const About = () => {
             <span className="stat-label">Domains</span>
           </div>
           <div className="stat-item">
-            <span className="stat-number">50K+</span>
-            <span className="stat-label">Prize Pool</span>
+            <span className="stat-number">6</span>
+            <span className="stat-label">Problem Statements</span>
           </div>
         </motion.div>
       </div>
