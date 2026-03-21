@@ -90,6 +90,44 @@ const Hero = () => {
     seconds: 0,
   });
 
+  const [modelConfig, setModelConfig] = useState({
+    scale: 1.4,
+    position: [-0.5, -1.7, 0],
+  });
+
+  // Handle viewport width changes for responsive model settings
+  useEffect(() => {
+    const updateModelConfig = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        // Mobile: small scale
+        setModelConfig({
+          scale: 0.7,
+          position: [-0.2, -1.2, 0],
+        });
+      } else if (width < 1024) {
+        // Tablet: medium scale
+        setModelConfig({
+          scale: 1.0,
+          position: [-0.3, -1.5, 0],
+        });
+      } else {
+        // Desktop: large scale
+        setModelConfig({
+          scale: 1.4,
+          position: [-0.5, -1.7, 0],
+        });
+      }
+    };
+
+    // Set initial config
+    updateModelConfig();
+
+    // Update on resize
+    window.addEventListener('resize', updateModelConfig);
+    return () => window.removeEventListener('resize', updateModelConfig);
+  }, []);
+
   useEffect(() => {
     const targetDate = new Date('2026-04-10T09:00:00');
 
@@ -249,13 +287,12 @@ const Hero = () => {
 
         <motion.div
           className="hero-model"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 5 }}
+          initial={{ opacity: 0, x: 150, y: 100 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 1, delay: 1, type: 'spring', stiffness: 50, damping: 15 }}
         >
           <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-            {/* Adjust scale and position here */}
-            <Scene scale={1.4} position={[-0.5, -1.7, 0]} />
+            <Scene scale={modelConfig.scale} position={modelConfig.position} />
           </Canvas>
         </motion.div>
       </div>
