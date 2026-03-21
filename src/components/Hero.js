@@ -301,6 +301,10 @@ const Hero = () => {
             <span className="title-year">2K26</span>
           </motion.h1>
 
+          <motion.p className="hero-association" variants={itemVariants}>
+            by IT Association
+          </motion.p>
+
           <motion.p className="hero-subtitle" variants={itemVariants}>
             Code. Create. Conquer.
           </motion.p>
