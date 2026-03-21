@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle, Phone, Mail } from 'lucide-react';
 import './FAQ.css';
 
 const FAQ = () => {
@@ -120,7 +120,19 @@ const FAQ = () => {
           transition={{ delay: 0.4 }}
         >
           <p>Still have questions?</p>
-          <a href="mailto:hello@devforge2k26.com">Contact Us</a>
+          <div className="faq-contact-links">
+            <a href="mailto:hello@devforge2k26.com" className="faq-contact-item">
+              <Mail size={18} /> Email Us
+            </a>
+            <div className="faq-contact-phones">
+              <a href="tel:+917010499316" className="faq-contact-item">
+                <Phone size={18} /> +91 70104 99316
+              </a>
+              <a href="tel:+919080176624" className="faq-contact-item">
+                <Phone size={18} /> +91 90801 76624
+              </a>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

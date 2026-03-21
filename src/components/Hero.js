@@ -82,6 +82,65 @@ const Scene = ({ scale, position }) => {
   );
 };
 
+// 3D Model Configuration - Separate Size and Position Settings for each breakpoint
+const MODEL_SETTINGS = {
+  // Desktop (>= 1024px)
+  desktop: {
+    size: {
+      scale: 1.4,
+    },
+    position: {
+      x: -0.5,
+      y: -1.7,
+      z: 0,
+    },
+  },
+  // Tablet (768px - 1023px)
+  tablet: {
+    size: {
+      scale: 1.0,
+    },
+    position: {
+      x: -0.3,
+      y: -1.5,
+      z: 0,
+    },
+  },
+  // Mobile (481px - 767px)
+  mobile: {
+    size: {
+      scale: 2,
+    },
+    position: {
+      x: 0,
+      y: -3,
+      z: 0,
+    },
+  },
+  // Small Mobile (361px - 480px)
+  mobileSmall: {
+    size: {
+      scale: 1.5,
+    },
+    position: {
+      x: 0,
+      y: -1.8,
+      z: 0,
+    },
+  },
+  // Extra Small Mobile (<= 360px)
+  mobileXSmall: {
+    size: {
+      scale: 2.0,
+    },
+    position: {
+      x: 0,
+      y: -2.0,
+      z: 0,
+    },
+  },
+};
+
 const Hero = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -90,34 +149,30 @@ const Hero = () => {
     seconds: 0,
   });
 
-  const [modelConfig, setModelConfig] = useState({
-    scale: 1.4,
-    position: [-0.5, -1.7, 0],
-  });
+  const [modelSize, setModelSize] = useState(MODEL_SETTINGS.desktop.size);
+  const [modelPosition, setModelPosition] = useState(MODEL_SETTINGS.desktop.position);
 
   // Handle viewport width changes for responsive model settings
   useEffect(() => {
     const updateModelConfig = () => {
       const width = window.innerWidth;
-      if (width < 768) {
-        // Mobile: small scale
-        setModelConfig({
-          scale: 0.7,
-          position: [-0.2, -1.2, 0],
-        });
+      let settings;
+
+      if (width <= 360) {
+        settings = MODEL_SETTINGS.mobileXSmall;
+      } else if (width <= 480) {
+        settings = MODEL_SETTINGS.mobileSmall;
+      } else if (width < 768) {
+        settings = MODEL_SETTINGS.mobile;
       } else if (width < 1024) {
-        // Tablet: medium scale
-        setModelConfig({
-          scale: 1.0,
-          position: [-0.3, -1.5, 0],
-        });
+        settings = MODEL_SETTINGS.tablet;
       } else {
-        // Desktop: large scale
-        setModelConfig({
-          scale: 1.4,
-          position: [-0.5, -1.7, 0],
-        });
+        settings = MODEL_SETTINGS.desktop;
       }
+
+      // Update size and position separately
+      setModelSize(settings.size);
+      setModelPosition(settings.position);
     };
 
     // Set initial config
@@ -261,7 +316,7 @@ const Hero = () => {
 
           <motion.div className="hero-buttons" variants={itemVariants}>
             <motion.a
-              href="https://forms.google.com/your-form-url"
+              href="https://forms.gle/JJegGzSRa9tfoh4u7"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
@@ -292,7 +347,10 @@ const Hero = () => {
           transition={{ duration: 1, delay: 1, type: 'spring', stiffness: 50, damping: 15 }}
         >
           <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-            <Scene scale={modelConfig.scale} position={modelConfig.position} />
+            <Scene
+              scale={modelSize.scale}
+              position={[modelPosition.x, modelPosition.y, modelPosition.z]}
+            />
           </Canvas>
         </motion.div>
       </div>

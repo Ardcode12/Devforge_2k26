@@ -41,7 +41,7 @@
   margin-bottom: 3rem;
 }
 
-.logo-icon-wrapper {
+.loading-logo .logo-icon-wrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -171,12 +171,12 @@
     font-size: 2.5rem;
   }
 
-  .logo-icon-wrapper {
+  .loading-logo .logo-icon-wrapper {
     width: 80px;
     height: 80px;
   }
 
-  .logo-icon-wrapper svg:first-child {
+  .loading-logo .logo-icon-wrapper svg:first-child {
     width: 36px;
     height: 36px;
   }

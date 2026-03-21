@@ -472,7 +472,14 @@
   }
 
   .day-connector {
-    transform: rotate(90deg);
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .connector-line {
+    width: 3px;
+    height: 30px;
+    background: linear-gradient(180deg, var(--brown-500), var(--blue-600));
   }
 
   .day-btn {

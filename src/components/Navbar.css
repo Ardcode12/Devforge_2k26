@@ -5,7 +5,7 @@
   right: 0;
   width: 100%;
   z-index: 1000;
-  padding: 0.35rem 2rem;
+  padding: 0.75rem 6rem;
   transition: all 0.4s ease;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(0px);
@@ -47,7 +47,7 @@
   position: relative;
   color: var(--white);
   box-shadow: 0 4px 15px rgba(139, 69, 19, 0.25);
-  margin-top: 3px;
+  flex-shrink: 0;
 }
 
 .logo-zap {
@@ -195,13 +195,18 @@
     flex-direction: column;
     gap: 0.5rem;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 14px;
     margin-top: 0.75rem;
-    box-shadow: 0 8px 32px rgba(139, 69, 19, 0.1);
+    box-shadow: 0 8px 32px rgba(139, 69, 19, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.4);
+    position: absolute;
+    top: 100%;
+    left: 1rem;
+    right: 1rem;
+    z-index: 1001;
   }
 
   .mobile-link {

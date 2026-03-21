@@ -44,12 +44,13 @@ const Domains = () => {
     },
     {
       icon: <Shield size={32} />,
-      name: 'Cyber Security',
+      name: 'Cyber Security and IoT',
       color: '#dc2626',
-      description: 'Build robust security solutions that protect digital assets, detect threats, and ensure data privacy in an increasingly connected world.',
+      description: 'Build robust security solutions that protect digital assets, and innovate with connected devices to automate and monitor our physical world.',
       problems: [
         {
           id: 1,
+          category: 'Cyber Security',
           title: 'AI-Driven Web Application Security Suite',
           description: 'Create a security suite that filters and blocks attacks like SQL Injection, XSS, CSRF, RCE while continuously scanning for vulnerabilities and suggesting code-level fixes.',
           detailedDescription: 'Build a prototype or working model that can filter and block attacks like SQL Injection, XSS, CSRF, RCE, etc. The system should continuously scan for vulnerabilities and suggest code-level fixes. It must support different languages and frameworks. Input includes HTTP/HTTPS requests and application code-base. Expected output: attack prevention alerts, vulnerability reports, and remediation suggestions.',
@@ -63,6 +64,7 @@ const Domains = () => {
         },
         {
           id: 2,
+          category: 'IoT',
           title: 'Insider Threat & Zero Trust Monitoring System',
           description: 'Design a Zero Trust Model where every access is continuously verified and insider anomalies are flagged with risk scoring.',
           detailedDescription: 'Design a Zero Trust Model where every access is continuously verified, and insider anomalies are flagged. Inputs include user login records, file access logs, and device fingerprints. Expected output: Zero Trust Prototype for Enterprise, insider risk score, and access decisions (Allow/Deny). The system should implement User and Entity Behavior Analytics with micro-segmentation of access.',
@@ -244,7 +246,7 @@ const Domains = () => {
               </button>
 
               <div className="modal-header">
-                <span className="modal-domain">{selectedProblem.domainName}</span>
+                <span className="modal-domain">{selectedProblem.category || selectedProblem.domainName}</span>
                 <h2 className="modal-title">{selectedProblem.title}</h2>
               </div>
 

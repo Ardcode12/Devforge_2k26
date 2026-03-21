@@ -50,20 +50,7 @@ const Footer = () => {
             <p className="footer-tagline">
               The ultimate 30-hour hackathon experience where innovation meets creativity.
             </p>
-            <div className="social-links">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  className="social-link"
-                  aria-label={social.label}
-                  whileHover={{ y: -3, scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
-            </div>
+            
           </motion.div>
 
           <motion.div
@@ -100,45 +87,19 @@ const Footer = () => {
           >
             <h4>Contact Us</h4>
             <ul>
-              <li>
-                <Mail size={18} />
-                <a href="mailto:hello@devforge2k26.com">hello@devforge2k26.com</a>
-              </li>
+              
               <li>
                 <Phone size={18} />
-                <a href="tel:+919876543210">+91 98765 43210</a>
+                <a href="tel:+917010499316">+91 70104 99316</a>
               </li>
               <li>
                 <MapPin size={18} />
-                <span>College Campus, City</span>
+                <span>Kongu Engineering College,Perundurai</span>
               </li>
             </ul>
           </motion.div>
 
-          <motion.div
-            className="footer-newsletter"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h4>Stay Updated</h4>
-            <p>Get the latest updates and announcements</p>
-            <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                required
-              />
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Subscribe
-              </motion.button>
-            </form>
-          </motion.div>
+          
         </div>
 
         <div className="footer-bottom">

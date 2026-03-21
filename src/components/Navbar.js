@@ -83,7 +83,7 @@ const Navbar = () => {
             </motion.a>
           ))}
           <motion.a
-            href="https://forms.google.com/your-form-url"
+            href="https://forms.gle/JJegGzSRa9tfoh4u7"
             target="_blank"
             rel="noopener noreferrer"
             className="nav-register"
@@ -103,9 +103,9 @@ const Navbar = () => {
         {isOpen && (
           <motion.div
             className="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
             {navItems.map((item, index) => (
@@ -125,7 +125,7 @@ const Navbar = () => {
               </motion.a>
             ))}
             <motion.a
-              href="https://forms.google.com/your-form-url"
+              href="https://forms.gle/JJegGzSRa9tfoh4u7"
               target="_blank"
               rel="noopener noreferrer"
               className="mobile-register"
