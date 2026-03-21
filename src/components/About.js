@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Lightbulb, Users, Trophy, Zap, Award, Coffee } from 'lucide-react';
+import { Lightbulb, Users, Trophy, Zap, Award, Coffee } from 'lucide-react';
 import './About.css';
 
 const About = () => {

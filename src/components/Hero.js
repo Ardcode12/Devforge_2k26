@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, useGLTF, useAnimations, Environment } from '@react-three/drei';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { useGLTF, useAnimations, Environment } from '@react-three/drei';
 import { Calendar, Clock, MapPin, ChevronDown, Sparkles } from 'lucide-react';
 import './Hero.css';
 
@@ -57,7 +57,6 @@ const Model = ({ scale = 2.5, position = [0, -1, 0], mouse }) => {
 
 const Scene = ({ scale, position }) => {
   const mouse = useRef({ x: 0, y: 0 });
-  const { size } = useThree();
 
   useEffect(() => {
     const handleMouseMove = (event) => {
