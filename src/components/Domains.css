@@ -178,6 +178,25 @@
   color: var(--brown-200);
 }
 
+.tab-contact {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--brown-700);
+  transition: color 0.3s ease;
+}
+
+.domain-tab.active .tab-contact {
+  color: var(--white);
+}
+
+.tab-contact svg {
+  flex-shrink: 0;
+}
+
 .tab-arrow {
   color: var(--brown-400);
   transition: all 0.3s ease;

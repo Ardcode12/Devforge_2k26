@@ -9,7 +9,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: 'Who can participate in DevForge 2K26?',
-      answer: 'DevForge 2K26 is open to all college students currently enrolled in undergraduate or postgraduate programs. You can participate individually or in teams of up to 3 members.',
+      answer: 'DevForge 2K26 is open to all department students in kongu engineering college. You can participate 2 or in teams of up to 3 members.',
     },
     {
       question: 'What is the team size limit?',

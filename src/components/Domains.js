@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, Shield, Smartphone, ChevronRight, ArrowRight, X, Target, CheckCircle, Lightbulb } from 'lucide-react';
+import { Brain, Shield, Smartphone, ChevronRight, ArrowRight, X, Target, CheckCircle, Lightbulb, Phone } from 'lucide-react';
 import './Domains.css';
 
 const Domains = () => {
@@ -11,6 +11,7 @@ const Domains = () => {
     {
       icon: <Brain size={32} />,
       name: 'Artificial Intelligence',
+      contact: '+91 90039 48329',
       color: '#2563eb',
       description: 'Harness the power of artificial intelligence to solve complex problems and create intelligent solutions that transform industries.',
       problems: [
@@ -45,6 +46,7 @@ const Domains = () => {
     {
       icon: <Shield size={32} />,
       name: 'Cyber Security and IoT',
+      contact: '+91 82203 91947',
       color: '#dc2626',
       description: 'Build robust security solutions that protect digital assets, and innovate with connected devices to automate and monitor our physical world.',
       problems: [
@@ -81,6 +83,7 @@ const Domains = () => {
     {
       icon: <Smartphone size={32} />,
       name: 'Mobile Application',
+      contact: '+91 78689 91717',
       color: '#059669',
       description: 'Create innovative mobile applications that solve real-world problems and deliver exceptional user experiences on smartphones and tablets.',
       problems: [
@@ -164,6 +167,9 @@ const Domains = () => {
                 <div className="tab-content">
                   <h3 className="tab-name">{domain.name}</h3>
                   <p className="tab-desc">{domain.description}</p>
+                  <p className="tab-contact">
+                    <Phone size={14} /> <span>{domain.contact}</span>
+                  </p>
                 </div>
                 <ChevronRight className="tab-arrow" size={20} />
               </motion.button>
