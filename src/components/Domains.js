@@ -45,7 +45,7 @@ const Domains = () => {
     },
     {
       icon: <Shield size={32} />,
-      name: 'Cyber Security and IoT',
+      name: 'Cyber Security',
       contact: '+91 82203 91947',
       color: '#dc2626',
       description: 'Build robust security solutions that protect digital assets, and innovate with connected devices to automate and monitor our physical world.',
@@ -66,7 +66,7 @@ const Domains = () => {
         },
         {
           id: 2,
-          category: 'IoT',
+          category: 'Cyber Security',
           title: 'Insider Threat & Zero Trust Monitoring System',
           description: 'Design a Zero Trust Model where every access is continuously verified and insider anomalies are flagged with risk scoring.',
           detailedDescription: 'Design a Zero Trust Model where every access is continuously verified, and insider anomalies are flagged. Inputs include user login records, file access logs, and device fingerprints. Expected output: Zero Trust Prototype for Enterprise, insider risk score, and access decisions (Allow/Deny). The system should implement User and Entity Behavior Analytics with micro-segmentation of access.',
