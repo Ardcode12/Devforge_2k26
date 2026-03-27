@@ -322,13 +322,22 @@ const Hero = () => {
             <div className="info-divider" />
             <div className="info-item">
               <Clock size={20} />
-              <span>Prelims: April 3</span>
+              <span>Prelims: April 11 &  12  </span>
             </div>
             <div className="info-divider" />
             <div className="info-item">
               <MapPin size={20} />
               <span>Kongu Engineering College</span>
             </div>
+          </motion.div>
+
+          <motion.div className="registration-notices" variants={itemVariants} style={{ marginBottom: '1.5rem' }}>
+            <p style={{ color: '#ef4444', fontWeight: 'bold', margin: '0 0 0.5rem 0', fontSize: '1.1rem' }}>
+              Registration closed on April 10
+            </p>
+            <p style={{ color: '#d97706', fontSize: '0.9rem', margin: 0, fontWeight: '500' }}>
+              * Registrations may close earlier for specific domains if maximum count is reached.
+            </p>
           </motion.div>
 
           <motion.div className="countdown" variants={itemVariants}>

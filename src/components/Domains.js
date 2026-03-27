@@ -211,7 +211,10 @@ const Domains = () => {
                       onClick={() => openProblemModal(problem, domains[activeDomain].color, domains[activeDomain].name)}
                     >
                       <div className="problem-number">
-                        <span>{String(index + 1).padStart(2, '0')}</span>
+                        <span>
+                          {activeDomain === 0 ? 'AI' : activeDomain === 1 ? 'CS' : 'MA'}
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
                       </div>
                       <div className="problem-content">
                         <h4 className="problem-title">{problem.title}</h4>

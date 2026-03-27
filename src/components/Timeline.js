@@ -221,7 +221,7 @@ const Timeline = () => {
           >
             <span className="day-number">01</span>
             <span className="day-text">Day One</span>
-            <span className="day-date">April 10</span>
+            <span className="day-date">April 17</span>
           </button>
           <div className="day-connector">
             <div className="connector-line"></div>
@@ -234,7 +234,7 @@ const Timeline = () => {
           >
             <span className="day-number">02</span>
             <span className="day-text">Day Two</span>
-            <span className="day-date">April 11</span>
+            <span className="day-date">April 18</span>
           </button>
         </motion.div>
 
