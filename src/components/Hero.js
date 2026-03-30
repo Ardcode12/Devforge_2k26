@@ -225,7 +225,7 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const targetDate = new Date('2026-04-17T09:00:00');
+    const targetDate = new Date('2026-04-18T09:00:00');
 
     const timer = setInterval(() => {
       const now = new Date();
@@ -317,7 +317,7 @@ const Hero = () => {
           <motion.div className="hero-info" variants={itemVariants}>
             <div className="info-item">
               <Calendar size={20} />
-              <span>April 17-18, 2026</span>
+              <span>April 18-19, 2026</span>
             </div>
             <div className="info-divider" />
             <div className="info-item">
