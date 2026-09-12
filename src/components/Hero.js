@@ -292,7 +292,7 @@ const Hero = () => {
         >
           <motion.div className="hero-badge" variants={itemVariants}>
             <Sparkles size={16} />
-            <span>NIVedhaaaaaaa IIIIIII</span>
+            <span>30 Hours of Innovation</span>
           </motion.div>
 
           <motion.h1 className="hero-title" variants={itemVariants}>
