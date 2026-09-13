@@ -1,0 +1,63 @@
+.bg-audio-toggle {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 1100;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(14, 7, 9, 0.7);
+  color: var(--kolly-gold);
+  border: 1px solid var(--kolly-border);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bg-audio-toggle:hover {
+  background: linear-gradient(135deg, var(--kolly-gold), var(--kolly-crimson));
+  color: var(--kolly-black);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
+}
+
+.bg-audio-toggle.is-playing::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  animation: bgAudioPulse 2s ease-out infinite;
+}
+
+@keyframes bgAudioPulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .bg-audio-toggle {
+    width: 46px;
+    height: 46px;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-audio-toggle.is-playing::after {
+    animation: none;
+  }
+}

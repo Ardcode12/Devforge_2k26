@@ -112,11 +112,11 @@ const About = () => {
             <span className="stat-label">Hours</span>
           </div>
           <div className="stat-item">
-            <span className="stat-number">3</span>
+            <span className="stat-number">4</span>
             <span className="stat-label">Domains</span>
           </div>
           <div className="stat-item">
-            <span className="stat-number">6</span>
+            <span className="stat-number">TBD</span>
             <span className="stat-label">Problem Statements</span>
           </div>
         </motion.div>

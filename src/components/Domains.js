@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, Shield, Smartphone, ChevronRight, ArrowRight, X, Target, CheckCircle, Lightbulb, Phone } from 'lucide-react';
+import { Brain, Smartphone, ChevronRight, ArrowRight, X, Target, CheckCircle, Lightbulb, Phone, Code2, Building2 } from 'lucide-react';
 import './Domains.css';
 
 const Domains = () => {
@@ -9,113 +9,40 @@ const Domains = () => {
 
   const domains = [
     {
+      code: 'ML',
       icon: <Brain size={32} />,
-      name: 'Artificial Intelligence',
-      contact: '+91 90039 48329',
-      color: '#2563eb',
-      description: 'Harness the power of artificial intelligence to solve complex problems and create intelligent solutions that transform industries.',
-      problems: [
-        {
-          id: 1,
-          title: 'AI-Powered Test Case Generator',
-          description: 'Build an AI system that takes simple business requirements in natural language and generates relevant test cases with positive and negative scenarios.',
-          detailedDescription: 'Build an AI-powered system that can take simple business requirements written in natural language and generate relevant test cases. The system should identify key scenarios, including positive and negative cases, and organize them in a structured format. Participants may optionally simulate test execution or visualize results through a simple interface.',
-          objectives: [
-            'Develop intelligent understanding of natural language requirements',
-            'Generate comprehensive test cases including positive and negative scenarios',
-            'Organize test cases in a structured, readable format',
-            'Optionally simulate test execution or visualize results through an interface',
-          ],
-          deliverables: ['Working prototype', 'Test case output samples', 'Demo presentation'],
-        },
-        {
-          id: 2,
-          title: 'AI-Powered Incident Analyzer',
-          description: 'Create an AI system that analyzes incident reports or system logs to classify them by severity, category, and identify potential root causes.',
-          detailedDescription: 'Build an AI-powered system that can analyze incident reports or system logs and automatically classify them based on severity, category, and potential root cause. The system should provide meaningful insights such as identifying recurring issues, suggesting possible resolutions, and prioritizing critical incidents. Participants may use structured or unstructured data and present results through a simple dashboard or visualization.',
-          objectives: [
-            'Implement intelligent analysis and pattern recognition on logs/reports',
-            'Classify incidents by severity, category, and potential root cause',
-            'Identify recurring issues and suggest possible resolutions',
-            'Prioritize critical incidents and present actionable insights via dashboard',
-          ],
-          deliverables: ['Analysis system', 'Dashboard/visualization', 'Documentation'],
-        },
-      ],
+      name: 'Machine Learning',
+      contact: 'To be announced',
+      color: '#E8C36A',
+      description: 'Build intelligent systems that learn from data and solve real-world problems with AI and machine learning.',
+      problems: [],
     },
     {
-      icon: <Shield size={32} />,
-      name: 'Cyber Security',
-      contact: '+91 82203 91947',
-      color: '#dc2626',
-      description: 'Build robust security solutions that protect digital assets, and innovate with connected devices to automate and monitor our physical world.',
-      problems: [
-        {
-          id: 1,
-          category: 'Cyber Security',
-          title: 'AI-Driven Web Application Security Suite',
-          description: 'Create a security suite that filters and blocks attacks like SQL Injection, XSS, CSRF, RCE while continuously scanning for vulnerabilities and suggesting code-level fixes.',
-          detailedDescription: 'Build a prototype or working model that can filter and block attacks like SQL Injection, XSS, CSRF, RCE, etc. The system should continuously scan for vulnerabilities and suggest code-level fixes. It must support different languages and frameworks. Input includes HTTP/HTTPS requests and application code-base. Expected output: attack prevention alerts, vulnerability reports, and remediation suggestions.',
-          objectives: [
-            'Implement real-time WAF with auto-logging of blocked requests',
-            'Build AI Scanner for OWASP Top 10 vulnerabilities',
-            'Provide fix recommendations with code snippets',
-            'Support multiple languages and frameworks',
-          ],
-          deliverables: ['Security suite prototype', 'Vulnerability reports', 'Demo presentation'],
-        },
-        {
-          id: 2,
-          category: 'Cyber Security',
-          title: 'Insider Threat & Zero Trust Monitoring System',
-          description: 'Design a Zero Trust Model where every access is continuously verified and insider anomalies are flagged with risk scoring.',
-          detailedDescription: 'Design a Zero Trust Model where every access is continuously verified, and insider anomalies are flagged. Inputs include user login records, file access logs, and device fingerprints. Expected output: Zero Trust Prototype for Enterprise, insider risk score, and access decisions (Allow/Deny). The system should implement User and Entity Behavior Analytics with micro-segmentation of access.',
-          objectives: [
-            'Implement User and Entity Behavior Analytics (UEBA)',
-            'Create micro-segmentation of access controls',
-            'Build insider risk scoring system with Allow/Deny decisions',
-            'Design dashboard displaying suspicious activities',
-          ],
-          deliverables: ['Zero Trust prototype', 'Risk scoring system', 'Security dashboard'],
-        },
-      ],
+      code: 'FS',
+      icon: <Code2 size={32} />,
+      name: 'Full Stack & Cyber Security',
+      contact: 'To be announced',
+      color: '#C1121F',
+      description: 'Engineer complete web applications end to end while securing them against modern threats and vulnerabilities.',
+      problems: [],
     },
     {
+      code: 'MB',
       icon: <Smartphone size={32} />,
       name: 'Mobile Application',
-      contact: '+91 78689 91717',
-      color: '#059669',
-      description: 'Create innovative mobile applications that solve real-world problems and deliver exceptional user experiences on smartphones and tablets.',
-      problems: [
-        {
-          id: 1,
-          title: 'Offline-First Disaster Response System',
-          description: 'Develop a mobile application that enables reliable communication and coordination during natural disasters in the absence of internet connectivity using p2p mesh networking.',
-          detailedDescription: 'Develop a mobile application that enables reliable communication and coordination during natural disasters in the absence of internet connectivity. The system should utilize peer-to-peer mesh networking technologies such as Bluetooth and WiFi Direct to transmit SOS messages, location data, and critical alerts across devices. It should incorporate on-device artificial intelligence to assess the severity of reported incidents using text, voice, and image inputs, thereby prioritizing rescue efforts. The application must also support decentralized data synchronization, dynamic hazard mapping, and efficient resource allocation once connectivity is restored.',
-          objectives: [
-            'Implement P2P mesh networking for offline communication via Bluetooth/WiFi Direct',
-            'Integrate on-device AI to assess severity of incidents from multi-modal inputs',
-            'Develop a dynamic hazard mapping system for real-time risk assessment',
-            'Enable decentralized data synchronization upon reconnection',
-          ],
-          techStack: ['React Native/Flutter', 'Mesh Networking', 'On-Device AI', 'Offline Databases'],
-          deliverables: ['Mobile app prototype', 'Mesh network demonstration', 'Architecture presentation'],
-        },
-        {
-          id: 2,
-          title: 'AI-Driven Document Verification System',
-          description: 'Design a mobile app using computer vision and machine learning to detect fraudulent documents, analyze structural inconsistencies, and validate against trusted sources.',
-          detailedDescription: 'Design a mobile application capable of detecting and preventing the use of fraudulent certificates and official documents. The system should employ computer vision and machine learning techniques to analyze document structure, detect inconsistencies in fonts, signatures, and images, and identify signs of tampering. It should integrate optical character recognition for extracting textual data and validating it against trusted sources. Additionally, the solution should support secure verification mechanisms such as QR code validation and optional blockchain-based storage to ensure authenticity, traceability, and resistance to forgery.',
-          objectives: [
-            'Implement CV and ML to detect structural and forensic inconsistencies',
-            'Integrate OCR for textual data extraction and validation',
-            'Develop secure QR code validation mechanisms',
-            'Implement optional blockchain-based storage for authenticity and traceability',
-          ],
-          techStack: ['React Native/Flutter', 'Computer Vision/ML', 'OCR Engine', 'Blockchain/Web3'],
-          deliverables: ['Mobile verification app prototype', 'Fraud detection demo', 'System workflow'],
-        },
-      ],
+      contact: 'To be announced',
+      color: '#4A90D9',
+      description: 'Create innovative mobile applications that solve real-world problems and deliver exceptional user experiences.',
+      problems: [],
+    },
+    {
+      code: 'EN',
+      icon: <Building2 size={32} />,
+      name: 'Enterprise Development',
+      contact: 'To be announced',
+      color: '#7C5CFF',
+      description: 'Design production-grade enterprise systems, from development through deployment, scaling, and operations.',
+      problems: [],
     },
   ];
 
@@ -126,6 +53,8 @@ const Domains = () => {
   const closeProblemModal = () => {
     setSelectedProblem(null);
   };
+
+  const activeProblems = domains[activeDomain].problems;
 
   return (
     <section id="domains" className="domains">
@@ -140,7 +69,7 @@ const Domains = () => {
           <span className="section-label">Challenge Tracks</span>
           <h2 className="section-title">Choose Your Domain</h2>
           <p className="section-description">
-            Select from three exciting domains, each featuring unique problem statements
+            Select from four exciting domains, each featuring unique problem statements
             designed to challenge and inspire innovative solutions.
           </p>
         </motion.div>
@@ -199,32 +128,45 @@ const Domains = () => {
                   ></span>
                   Problem Statements
                 </h3>
-                <div className="problems-list">
-                  {domains[activeDomain].problems.map((problem, index) => (
-                    <motion.div
-                      key={problem.id}
-                      className="problem-card"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{ scale: 1.02 }}
-                      onClick={() => openProblemModal(problem, domains[activeDomain].color, domains[activeDomain].name)}
-                    >
-                      <div className="problem-number">
-                        <span>
-                          {activeDomain === 0 ? 'AI' : activeDomain === 1 ? 'CS' : 'MA'}
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                      </div>
-                      <div className="problem-content">
-                        <h4 className="problem-title">{problem.title}</h4>
-                        <p className="problem-description">{problem.description}</p>
-                        <span className="click-hint">Click for details</span>
-                      </div>
-                      <ArrowRight className="problem-arrow" size={20} />
-                    </motion.div>
-                  ))}
-                </div>
+                {activeProblems.length > 0 ? (
+                  <div className="problems-list">
+                    {activeProblems.map((problem, index) => (
+                      <motion.div
+                        key={problem.id}
+                        className="problem-card"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ scale: 1.02 }}
+                        onClick={() => openProblemModal(problem, domains[activeDomain].color, domains[activeDomain].name)}
+                      >
+                        <div className="problem-number">
+                          <span>
+                            {domains[activeDomain].code}
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                        </div>
+                        <div className="problem-content">
+                          <h4 className="problem-title">{problem.title}</h4>
+                          <p className="problem-description">{problem.description}</p>
+                          <span className="click-hint">Click for details</span>
+                        </div>
+                        <ArrowRight className="problem-arrow" size={20} />
+                      </motion.div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="problems-coming-soon">
+                    <div className="coming-soon-icon">
+                      <Lightbulb size={30} />
+                    </div>
+                    <h4>Problem Statements Coming Soon</h4>
+                    <p>
+                      The challenge statements for {domains[activeDomain].name} will be
+                      announced shortly. Stay tuned!
+                    </p>
+                  </div>
+                )}
               </motion.div>
             </AnimatePresence>
           </motion.div>

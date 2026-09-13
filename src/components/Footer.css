@@ -1,6 +1,6 @@
-/* Footer - Dark Brown Theme */
+/* Footer - Kollywood Dark Theme */
 .footer {
-  background: linear-gradient(180deg, var(--brown-900) 0%, #2D1810 100%);
+  background: linear-gradient(180deg, var(--kolly-ink) 0%, #050304 100%);
   color: var(--white);
   padding: 80px 2rem 0;
   position: relative;
@@ -13,7 +13,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--brown-500), var(--blue-600), transparent);
+  background: linear-gradient(90deg, transparent, var(--kolly-gold), var(--kolly-crimson), transparent);
 }
 
 .footer-container {
@@ -41,21 +41,21 @@
 .footer-logo .logo-icon {
   width: 52px;
   height: 52px;
-  background: linear-gradient(135deg, var(--brown-500) 0%, var(--blue-600) 100%);
+  background: linear-gradient(135deg, var(--kolly-gold) 0%, var(--kolly-crimson) 100%);
   border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  color: var(--white);
-  box-shadow: 0 5px 20px rgba(184, 96, 47, 0.3);
+  color: var(--kolly-black);
+  box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
 }
 
 .footer-logo .logo-zap {
   position: absolute;
   top: -4px;
   right: -4px;
-  background: var(--brown-400);
+  background: var(--kolly-gold);
   border-radius: 50%;
   padding: 2px;
 }
@@ -67,22 +67,22 @@
 }
 
 .footer-logo .logo-dev {
-  color: var(--brown-300);
+  color: var(--kolly-gold);
 }
 
 .footer-logo .logo-forge {
-  color: var(--blue-300);
+  color: var(--kolly-gold-light);
 }
 
 .footer-logo .logo-year {
   font-size: 0.75rem;
-  color: var(--brown-400);
+  color: var(--kolly-gold);
   margin-left: 0.25rem;
 }
 
 .footer-tagline {
   font-size: 0.95rem;
-  color: var(--brown-300);
+  color: var(--kolly-muted);
   line-height: 1.7;
   margin-bottom: 1.5rem;
 }
@@ -96,23 +96,23 @@
 .social-link {
   width: 44px;
   height: 44px;
-  background: rgba(184, 96, 47, 0.15);
-  border: 1px solid rgba(184, 96, 47, 0.2);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid var(--kolly-border);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--brown-300);
+  color: var(--kolly-gold-light);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .social-link:hover {
-  background: linear-gradient(135deg, var(--brown-500) 0%, var(--blue-600) 100%);
+  background: linear-gradient(135deg, var(--kolly-gold) 0%, var(--kolly-crimson) 100%);
   border-color: transparent;
-  color: var(--white);
+  color: var(--kolly-black);
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(184, 96, 47, 0.3);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
 }
 
 /* Links Sections */
@@ -136,7 +136,7 @@
   left: 0;
   width: 30px;
   height: 2px;
-  background: linear-gradient(90deg, var(--brown-500), var(--blue-600));
+  background: linear-gradient(90deg, var(--kolly-gold), var(--kolly-crimson));
   border-radius: 1px;
 }
 
@@ -152,7 +152,7 @@
 }
 
 .footer-links a {
-  color: var(--brown-300);
+  color: var(--kolly-gold-light);
   text-decoration: none;
   font-size: 0.95rem;
   transition: all 0.3s ease;
@@ -166,12 +166,12 @@
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--brown-400);
+  background: var(--kolly-gold);
   transition: width 0.3s ease;
 }
 
 .footer-links a:hover {
-  color: var(--white);
+  color: var(--kolly-cream);
 }
 
 .footer-links a:hover::before {
@@ -184,29 +184,29 @@
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1rem;
-  color: var(--brown-300);
+  color: var(--kolly-gold-light);
   font-size: 0.95rem;
 }
 
 .footer-contact li svg {
-  color: var(--brown-400);
+  color: var(--kolly-gold);
   flex-shrink: 0;
 }
 
 .footer-contact a {
-  color: var(--brown-300);
+  color: var(--kolly-gold-light);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer-contact a:hover {
-  color: var(--white);
+  color: var(--kolly-cream);
 }
 
 /* Newsletter Section */
 .footer-newsletter p {
   font-size: 0.95rem;
-  color: var(--brown-300);
+  color: var(--kolly-muted);
   margin-bottom: 1rem;
 }
 
@@ -220,30 +220,30 @@
   padding: 0.875rem 1rem;
   font-size: 0.95rem;
   font-family: var(--font-primary);
-  background: rgba(184, 96, 47, 0.1);
-  border: 1px solid rgba(184, 96, 47, 0.2);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid var(--kolly-border);
   border-radius: 12px;
-  color: var(--white);
+  color: var(--kolly-cream);
   transition: all 0.3s ease;
 }
 
 .newsletter-form input:focus {
   outline: none;
-  border-color: var(--brown-400);
-  background: rgba(184, 96, 47, 0.15);
-  box-shadow: 0 0 0 4px rgba(184, 96, 47, 0.1);
+  border-color: var(--kolly-gold);
+  background: rgba(212, 175, 55, 0.12);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
 }
 
 .newsletter-form input::placeholder {
-  color: var(--brown-400);
+  color: var(--kolly-muted);
 }
 
 .newsletter-form button {
   padding: 0.875rem 1.5rem;
-  background: linear-gradient(135deg, var(--brown-500) 0%, var(--blue-600) 100%);
-  color: var(--white);
+  background: linear-gradient(135deg, var(--kolly-gold) 0%, var(--kolly-crimson) 100%);
+  color: var(--kolly-black);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--font-primary);
   border: none;
   border-radius: 12px;
@@ -253,7 +253,7 @@
 
 .newsletter-form button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(184, 96, 47, 0.4);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
 }
 
 /* Footer Bottom */
@@ -266,7 +266,7 @@
 
 .footer-bottom p {
   font-size: 0.875rem;
-  color: var(--brown-400);
+  color: var(--kolly-muted);
   display: flex;
   align-items: center;
   gap: 0.25rem;

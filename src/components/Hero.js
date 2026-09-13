@@ -1,178 +1,17 @@
-import React, { useState, useEffect, Suspense, useRef, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, useAnimations, Environment } from '@react-three/drei';
 import { Calendar, Clock, MapPin, ChevronDown, Sparkles } from 'lucide-react';
-import { useInView } from 'react-intersection-observer';
 import './Hero.css';
 
-// Error boundary to catch WebGL context failures on mobile
-class CanvasErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    console.warn('3D Canvas failed to load:', error.message);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      // Return nothing — the page continues without the 3D model
-      return null;
-    }
-    return this.props.children;
-  }
-}
-
-const Model = ({ scale = 2.5, position = [0, -1, 0], mouse, isVisible }) => {
-  const group = useRef();
-  const { scene, animations } = useGLTF('/models/orange.glb');
-  const { actions, names } = useAnimations(animations, group);
-
-  useEffect(() => {
-    let timeoutId;
-
-    // Play animation and schedule next with 3.5 second gap
-    const playAndScheduleNext = () => {
-      // Only process animations if the model is visible on screen
-      if (!isVisible) {
-        timeoutId = setTimeout(playAndScheduleNext, 1000); // Check again in 1s
-        return;
-      }
-
-      if (names.length > 0 && actions[names[0]]) {
-        const action = actions[names[0]];
-        action.reset();
-        action.setLoop(1, 1); // Play once
-        action.clampWhenFinished = true;
-        action.play();
-
-        // Get animation duration and schedule next after animation + 3.5 sec gap
-        const duration = action.getClip().duration * 1000;
-        timeoutId = setTimeout(playAndScheduleNext, duration + 3500);
-      }
-    };
-
-    // Play first animation immediately
-    playAndScheduleNext();
-
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, [actions, names, isVisible]);
-
-  // Rotate model based on mouse position (left/right only) - keeping position fixed
-  useFrame(() => {
-    if (group.current && isVisible) {
-      // Only rotate, don't change position
-      const targetRotationY = mouse.current.x * 1.2;
-      group.current.rotation.y += (targetRotationY - group.current.rotation.y) * 0.1;
-
-      // Keep position fixed
-      group.current.position.set(position[0], position[1], position[2]);
-    }
-  });
-
-  return (
-    <group ref={group} position={position}>
-      <primitive object={scene} scale={scale} />
-    </group>
-  );
-};
-
-const Scene = ({ scale, position, isVisible }) => {
-  const mouse = useRef({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      // Normalize mouse position to -1 to 1
-      mouse.current.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
-    };
-
-    // Only add mouse listener if visible
-    if (isVisible) {
-      window.addEventListener('mousemove', handleMouseMove);
-      return () => window.removeEventListener('mousemove', handleMouseMove);
-    }
-  }, [isVisible]);
-
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
-      <pointLight position={[-10, -10, -5]} intensity={0.5} color="#8b5a2b" />
-      <Suspense fallback={null}>
-        <Model scale={scale} position={position} mouse={mouse} isVisible={isVisible} />
-        <Environment preset="city" />
-      </Suspense>
-    </>
-  );
-};
-
-// 3D Model Configuration - Separate Size and Position Settings for each breakpoint
-const MODEL_SETTINGS = {
-  // Desktop (>= 1024px)
-  desktop: {
-    size: {
-      scale: 1.4,
-    },
-    position: {
-      x: -0.5,
-      y: -1.7,
-      z: 0,
-    },
-  },
-  // Tablet (768px - 1023px)
-  tablet: {
-    size: {
-      scale: 1.0,
-    },
-    position: {
-      x: -0.3,
-      y: -1.5,
-      z: 0,
-    },
-  },
-  // Mobile (481px - 767px)
-  mobile: {
-    size: {
-      scale: 2,
-    },
-    position: {
-      x: 0,
-      y: -3,
-      z: 0,
-    },
-  },
-  // Small Mobile (361px - 480px)
-  mobileSmall: {
-    size: {
-      scale: 1.5,
-    },
-    position: {
-      x: 0,
-      y: -1.8,
-      z: 0,
-    },
-  },
-  // Extra Small Mobile (<= 360px)
-  mobileXSmall: {
-    size: {
-      scale: 2.0,
-    },
-    position: {
-      x: 0,
-      y: -2.0,
-      z: 0,
-    },
-  },
+const GALLERY_CONFIG = {
+  images: [
+    '/heroimages/WhatsApp_Image_2026-09-10_at_3.55.53_PM__1_-removebg-preview.png',
+    '/heroimages/WhatsApp_Image_2026-09-10_at_3.55.55_PM-removebg-preview.png',
+  ],
+  imageSize: 840,          // px — desktop image width
+  slideDuration: 9,        // seconds each image stays on screen
+  transitionDuration: 0.9, // seconds for the enter/exit motion
+  direction: 'up',         // 'up' = bottom -> top, 'down' = top -> bottom
 };
 
 const Hero = () => {
@@ -183,45 +22,31 @@ const Hero = () => {
     seconds: 0,
   });
 
-  const [modelSize, setModelSize] = useState(MODEL_SETTINGS.desktop.size);
-  const [modelPosition, setModelPosition] = useState(MODEL_SETTINGS.desktop.position);
+  const [activeImage, setActiveImage] = useState(0);
+  const [isLeaving, setIsLeaving] = useState(false);
 
-  // Set up intersection observer to detect when Hero section is visible
-  const { ref: heroRef, inView: isVisible } = useInView({
-    triggerOnce: false,
-    threshold: 0, // Trigger as soon as 1px is visible
-    rootMargin: "50% 0px 50% 0px", // Keep it loaded slightly before/after scrolling past
-  });
-
-  // Handle viewport width changes for responsive model settings
   useEffect(() => {
-    const updateModelConfig = () => {
-      const width = window.innerWidth;
-      let settings;
+    if (GALLERY_CONFIG.images.length <= 1) return;
 
-      if (width <= 360) {
-        settings = MODEL_SETTINGS.mobileXSmall;
-      } else if (width <= 480) {
-        settings = MODEL_SETTINGS.mobileSmall;
-      } else if (width < 768) {
-        settings = MODEL_SETTINGS.mobile;
-      } else if (width < 1024) {
-        settings = MODEL_SETTINGS.tablet;
-      } else {
-        settings = MODEL_SETTINGS.desktop;
-      }
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
 
-      // Update size and position separately
-      setModelSize(settings.size);
-      setModelPosition(settings.position);
+    const holdMs = GALLERY_CONFIG.slideDuration * 1000;
+    const transitionMs = GALLERY_CONFIG.transitionDuration * 1000;
+    let leaveTimer;
+
+    const cycle = setInterval(() => {
+      setIsLeaving(true);
+      leaveTimer = setTimeout(() => {
+        setActiveImage((prev) => (prev + 1) % GALLERY_CONFIG.images.length);
+        setIsLeaving(false);
+      }, transitionMs);
+    }, holdMs + transitionMs);
+
+    return () => {
+      clearInterval(cycle);
+      clearTimeout(leaveTimer);
     };
-
-    // Set initial config
-    updateModelConfig();
-
-    // Update on resize
-    window.addEventListener('resize', updateModelConfig);
-    return () => window.removeEventListener('resize', updateModelConfig);
   }, []);
 
   useEffect(() => {
@@ -271,8 +96,11 @@ const Hero = () => {
     }
   };
 
+  const galleryEnterY = GALLERY_CONFIG.direction === 'up' ? '100%' : '-100%';
+  const galleryExitY = GALLERY_CONFIG.direction === 'up' ? '-100%' : '100%';
+
   return (
-    <section id="home" className="hero" ref={heroRef}>
+    <section id="home" className="hero">
       <div className="hero-bg">
         <div className="hero-gradient"></div>
         <div className="hero-pattern"></div>
@@ -394,30 +222,26 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          className="hero-model"
-          initial={{ opacity: 0, x: 150, y: 100 }}
-          animate={{ opacity: 1, x: 0, y: 0 }}
-          transition={{ duration: 1, delay: 1, type: 'spring', stiffness: 50, damping: 15 }}
+        <div
+          className="hero-gallery"
+          aria-hidden="true"
+          style={{ '--gallery-size': `${GALLERY_CONFIG.imageSize}px` }}
         >
-          <CanvasErrorBoundary>
-            {isVisible && (
-              <Canvas
-                camera={{ position: [0, 0, 5], fov: 50 }}
-                gl={{ powerPreference: 'high-performance', antialias: true }}
-                style={{ pointerEvents: 'auto' }}
-                // Demand frameloop only renders when requested - saves battery
-                frameloop={isVisible ? "always" : "demand"}
-              >
-                <Scene
-                  scale={modelSize.scale}
-                  position={[modelPosition.x, modelPosition.y, modelPosition.z]}
-                  isVisible={isVisible}
-                />
-              </Canvas>
-            )}
-          </CanvasErrorBoundary>
-        </motion.div>
+          <motion.img
+            key={activeImage}
+            src={GALLERY_CONFIG.images[activeImage]}
+            alt=""
+            className="hero-gallery-img"
+            draggable="false"
+            initial={{ y: galleryEnterY, opacity: 0, scale: 0.92 }}
+            animate={
+              isLeaving
+                ? { y: galleryExitY, opacity: 0, scale: 0.92 }
+                : { y: '0%', opacity: 1, scale: 1 }
+            }
+            transition={{ duration: GALLERY_CONFIG.transitionDuration, ease: 'easeInOut' }}
+          />
+        </div>
       </div>
 
       <motion.button

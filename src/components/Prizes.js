@@ -1,23 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Medal, Brain, Shield, Smartphone } from 'lucide-react';
+import { Trophy, Medal, Brain, Code2, Smartphone, Building2 } from 'lucide-react';
 import './Prizes.css';
 
 const Prizes = () => {
   const domainPrizes = [
     {
-      domain: 'Artificial Intelligence',
+      domain: 'Machine Learning',
       icon: <Brain size={28} />,
-      color: '#2563eb',
+      color: '#E8C36A',
       prizes: [
         { position: '1st Place', icon: <Trophy size={24} /> },
         { position: '2nd Place', icon: <Medal size={24} /> },
       ],
     },
     {
-      domain: 'Cyber Security',
-      icon: <Shield size={28} />,
-      color: '#dc2626',
+      domain: 'Full Stack & Cyber Security',
+      icon: <Code2 size={28} />,
+      color: '#C1121F',
       prizes: [
         { position: '1st Place', icon: <Trophy size={24} /> },
         { position: '2nd Place', icon: <Medal size={24} /> },
@@ -26,7 +26,16 @@ const Prizes = () => {
     {
       domain: 'Mobile Application',
       icon: <Smartphone size={28} />,
-      color: '#059669',
+      color: '#4A90D9',
+      prizes: [
+        { position: '1st Place', icon: <Trophy size={24} /> },
+        { position: '2nd Place', icon: <Medal size={24} /> },
+      ],
+    },
+    {
+      domain: 'Enterprise Development',
+      icon: <Building2 size={28} />,
+      color: '#7C5CFF',
       prizes: [
         { position: '1st Place', icon: <Trophy size={24} /> },
         { position: '2nd Place', icon: <Medal size={24} /> },

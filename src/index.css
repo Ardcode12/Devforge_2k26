@@ -1,36 +1,52 @@
 /* Devforge 2k26 - Global Styles */
+/* Theme: Kollywood — gold + crimson on a deep cinematic maroon canvas */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Primary Colors - Brown */
+  /* Kollywood Tokens */
+  --kolly-black: #0E0709;
+  --kolly-ink: #1A0D11;
+  --kolly-maroon: #2A1015;
+  --kolly-maroon-deep: #3B0D12;
+  --kolly-crimson: #C1121F;
+  --kolly-crimson-deep: #7A121C;
+  --kolly-gold: #D4AF37;
+  --kolly-gold-light: #E8C36A;
+  --kolly-cream: #F5E9CC;
+  --kolly-text: #EFE3D6;
+  --kolly-muted: #C9A9A0;
+  --kolly-border: rgba(212, 175, 55, 0.24);
+  --kolly-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+  /* Primary Colors - Brown (warm) */
   --brown-900: #5D3A1A;
   --brown-800: #6B4423;
   --brown-700: #8B4513;
   --brown-600: #A0522D;
-  --brown-500: #B8602F;
-  --brown-400: #D2691E;
+  --brown-500: #C99A2E;
+  --brown-400: #D4AF37;
   --brown-300: #E8A066;
   --brown-200: #F2C49B;
   --brown-100: #FBE8D3;
   --brown-50: #FDF5ED;
 
-  /* Primary Colors - Blue */
-  --blue-900: #0F1D2F;
-  --blue-800: #1E3A5F;
-  --blue-700: #2E5B8C;
-  --blue-600: #3A72AD;
-  --blue-500: #4A90D9;
-  --blue-400: #6BA8E8;
-  --blue-300: #8FC1F2;
-  --blue-200: #B8D9F9;
-  --blue-100: #E1F0FD;
-  --blue-50: #F0F7FE;
+  /* Primary Colors - Blue remapped to crimson/maroon */
+  --blue-900: #3B0D12;
+  --blue-800: #5A1018;
+  --blue-700: #7A121C;
+  --blue-600: #9E1620;
+  --blue-500: #C1121F;
+  --blue-400: #E23B4A;
+  --blue-300: #F08A93;
+  --blue-200: #F7C6CB;
+  --blue-100: #FBE3E6;
+  --blue-50: #FDF2F3;
 
   /* Legacy color mapping */
   --color-brown: #8B4513;
-  --color-brown-light: #D2691E;
-  --color-blue: #2E5B8C;
-  --color-blue-light: #4A90D9;
+  --color-brown-light: #D4AF37;
+  --color-blue: #7A121C;
+  --color-blue-light: #C1121F;
 
   /* Neutral Colors */
   --gray-900: #111827;
@@ -46,16 +62,16 @@
   --white: #FFFFFF;
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--brown-600) 0%, var(--blue-700) 100%);
-  --gradient-secondary: linear-gradient(135deg, var(--blue-600) 0%, var(--brown-500) 100%);
-  --gradient-hero: linear-gradient(180deg, var(--blue-50) 0%, var(--brown-50) 50%, var(--white) 100%);
+  --gradient-primary: linear-gradient(135deg, var(--kolly-gold) 0%, var(--kolly-crimson) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--kolly-crimson) 0%, var(--kolly-gold) 100%);
+  --gradient-hero: linear-gradient(180deg, var(--kolly-black) 0%, var(--kolly-maroon-deep) 55%, var(--kolly-ink) 100%);
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  --shadow-colored: 0 10px 40px -10px rgba(139, 69, 19, 0.3);
+  --shadow-colored: 0 10px 40px -10px rgba(212, 175, 55, 0.35);
 
   /* Typography */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -74,8 +90,8 @@ html {
 
 body {
   font-family: var(--font-primary);
-  background-color: var(--white);
-  color: var(--gray-800);
+  background-color: var(--kolly-black);
+  color: var(--kolly-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -86,7 +102,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.2;
-  color: var(--gray-900);
+  color: var(--kolly-cream);
 }
 
 a {
@@ -108,8 +124,8 @@ img {
 }
 
 ::selection {
-  background-color: var(--brown-400);
-  color: var(--white);
+  background-color: var(--kolly-gold);
+  color: var(--kolly-black);
 }
 
 ::-webkit-scrollbar {
@@ -117,14 +133,14 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--gray-100);
+  background: var(--kolly-ink);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--brown-500) 0%, var(--blue-600) 100%);
+  background: linear-gradient(180deg, var(--kolly-gold) 0%, var(--kolly-crimson) 100%);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--brown-600) 0%, var(--blue-700) 100%);
+  background: linear-gradient(180deg, var(--kolly-gold-light) 0%, var(--kolly-crimson) 100%);
 }

@@ -1,24 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code2, Zap } from 'lucide-react';
-import { useGLTF } from '@react-three/drei';
 import './Loading.css';
-
-// Preload the model
-const ModelPreloader = ({ onLoaded }) => {
-  useGLTF.preload('/models/orange.glb');
-
-  useEffect(() => {
-    // Once model is preloaded, mark as complete
-    onLoaded();
-  }, [onLoaded]);
-
-  return null;
-};
 
 const Loading = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     // Fast progress animation
@@ -36,10 +22,11 @@ const Loading = ({ onComplete }) => {
   }, []);
 
   useEffect(() => {
-    if (progress >= 100 && isLoaded) {
-      setTimeout(onComplete, 300);
+    if (progress >= 100) {
+      const timeout = setTimeout(onComplete, 300);
+      return () => clearTimeout(timeout);
     }
-  }, [progress, isLoaded, onComplete]);
+  }, [progress, onComplete]);
 
   return (
     <AnimatePresence>
@@ -49,8 +36,6 @@ const Loading = ({ onComplete }) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <ModelPreloader onLoaded={() => setIsLoaded(true)} />
-
         <div className="loading-content">
           <motion.div
             className="loading-logo"
