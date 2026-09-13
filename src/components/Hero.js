@@ -3,18 +3,10 @@ import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin, ChevronDown, Sparkles } from 'lucide-react';
 import './Hero.css';
 
-const GALLERY_CONFIG = {
-  images: [
-    '/heroimages/WhatsApp_Image_2026-09-10_at_3.55.53_PM__1_-removebg-preview.png',
-    '/heroimages/WhatsApp_Image_2026-09-10_at_3.55.55_PM-removebg-preview.png',
-  ],
-  imageSize: 840,          // px — desktop image width
-  slideDuration: 9,        // seconds each image stays on screen
-  transitionDuration: 0.9, // seconds for the enter/exit motion
-  direction: 'up',         // 'up' = bottom -> top, 'down' = top -> bottom
-};
+const HERO_IMAGE_SRC = '/heroimages/WhatsApp_Image_2026-09-10_at_3.55.53_PM__1_-removebg-preview.png';
+const HERO_IMAGE_SIZE = 840;
 
-const Hero = () => {
+const Countdown = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -22,35 +14,8 @@ const Hero = () => {
     seconds: 0,
   });
 
-  const [activeImage, setActiveImage] = useState(0);
-  const [isLeaving, setIsLeaving] = useState(false);
-
   useEffect(() => {
-    if (GALLERY_CONFIG.images.length <= 1) return;
-
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) return;
-
-    const holdMs = GALLERY_CONFIG.slideDuration * 1000;
-    const transitionMs = GALLERY_CONFIG.transitionDuration * 1000;
-    let leaveTimer;
-
-    const cycle = setInterval(() => {
-      setIsLeaving(true);
-      leaveTimer = setTimeout(() => {
-        setActiveImage((prev) => (prev + 1) % GALLERY_CONFIG.images.length);
-        setIsLeaving(false);
-      }, transitionMs);
-    }, holdMs + transitionMs);
-
-    return () => {
-      clearInterval(cycle);
-      clearTimeout(leaveTimer);
-    };
-  }, []);
-
-  useEffect(() => {
-    const targetDate = new Date('2026-04-18T09:00:00');
+    const targetDate = new Date('2026-09-22T09:00:00');
 
     const timer = setInterval(() => {
       const now = new Date();
@@ -69,6 +34,38 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, []);
 
+  return (
+    <div className="countdown">
+      <h3 className="countdown-label">
+        <Clock size={18} />
+        <span>Event Starts In</span>
+      </h3>
+      <div className="countdown-grid">
+        <div className="countdown-item">
+          <span className="countdown-number">{String(timeLeft.days).padStart(2, '0')}</span>
+          <span className="countdown-text">Days</span>
+        </div>
+        <div className="countdown-separator">:</div>
+        <div className="countdown-item">
+          <span className="countdown-number">{String(timeLeft.hours).padStart(2, '0')}</span>
+          <span className="countdown-text">Hours</span>
+        </div>
+        <div className="countdown-separator">:</div>
+        <div className="countdown-item">
+          <span className="countdown-number">{String(timeLeft.minutes).padStart(2, '0')}</span>
+          <span className="countdown-text">Minutes</span>
+        </div>
+        <div className="countdown-separator">:</div>
+        <div className="countdown-item">
+          <span className="countdown-number">{String(timeLeft.seconds).padStart(2, '0')}</span>
+          <span className="countdown-text">Seconds</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Hero = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -95,9 +92,6 @@ const Hero = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const galleryEnterY = GALLERY_CONFIG.direction === 'up' ? '100%' : '-100%';
-  const galleryExitY = GALLERY_CONFIG.direction === 'up' ? '-100%' : '100%';
 
   return (
     <section id="home" className="hero">
@@ -145,55 +139,20 @@ const Hero = () => {
           <motion.div className="hero-info" variants={itemVariants}>
             <div className="info-item">
               <Calendar size={20} />
-              <span>April 18-19, 2026</span>
+              <span>September 22-23, 2026</span>
             </div>
             <div className="info-divider" />
-            <div className="info-item">
-              <Clock size={20} />
-              <span>Prelims: April 11 &  12  </span>
-            </div>
-            <div className="info-divider" />
+
             <div className="info-item">
               <MapPin size={20} />
               <span>Kongu Engineering College</span>
             </div>
           </motion.div>
 
-          <motion.div className="registration-notices" variants={itemVariants} style={{ marginBottom: '1.5rem' }}>
-            <p style={{ color: '#ef4444', fontWeight: 'bold', margin: '0 0 0.5rem 0', fontSize: '1.1rem' }}>
-              Registration closed on April 10
-            </p>
-            <p style={{ color: '#d97706', fontSize: '0.9rem', margin: 0, fontWeight: '500' }}>
-              * Registrations may close earlier for specific domains if maximum count is reached.
-            </p>
-          </motion.div>
 
-          <motion.div className="countdown" variants={itemVariants}>
-            <h3 className="countdown-label">
-              <Clock size={18} />
-              <span>Event Starts In</span>
-            </h3>
-            <div className="countdown-grid">
-              <div className="countdown-item">
-                <span className="countdown-number">{String(timeLeft.days).padStart(2, '0')}</span>
-                <span className="countdown-text">Days</span>
-              </div>
-              <div className="countdown-separator">:</div>
-              <div className="countdown-item">
-                <span className="countdown-number">{String(timeLeft.hours).padStart(2, '0')}</span>
-                <span className="countdown-text">Hours</span>
-              </div>
-              <div className="countdown-separator">:</div>
-              <div className="countdown-item">
-                <span className="countdown-number">{String(timeLeft.minutes).padStart(2, '0')}</span>
-                <span className="countdown-text">Minutes</span>
-              </div>
-              <div className="countdown-separator">:</div>
-              <div className="countdown-item">
-                <span className="countdown-number">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                <span className="countdown-text">Seconds</span>
-              </div>
-            </div>
+
+          <motion.div variants={itemVariants}>
+            <Countdown />
           </motion.div>
 
           <motion.div className="hero-buttons" variants={itemVariants}>
@@ -225,21 +184,16 @@ const Hero = () => {
         <div
           className="hero-gallery"
           aria-hidden="true"
-          style={{ '--gallery-size': `${GALLERY_CONFIG.imageSize}px` }}
+          style={{ '--gallery-size': `${HERO_IMAGE_SIZE}px` }}
         >
           <motion.img
-            key={activeImage}
-            src={GALLERY_CONFIG.images[activeImage]}
-            alt=""
+            src={HERO_IMAGE_SRC}
+            alt="DevForge 2K26"
             className="hero-gallery-img"
             draggable="false"
-            initial={{ y: galleryEnterY, opacity: 0, scale: 0.92 }}
-            animate={
-              isLeaving
-                ? { y: galleryExitY, opacity: 0, scale: 0.92 }
-                : { y: '0%', opacity: 1, scale: 1 }
-            }
-            transition={{ duration: GALLERY_CONFIG.transitionDuration, ease: 'easeInOut' }}
+            initial={{ y: '100%' }}
+            animate={{ y: '0%' }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
           />
         </div>
       </div>
