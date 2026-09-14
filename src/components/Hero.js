@@ -114,7 +114,7 @@ const Hero = () => {
         >
           <motion.div className="hero-badge" variants={itemVariants}>
             <Sparkles size={16} />
-            <span>30 Hours of Innovation</span>
+            <span>24 Hours of Innovation</span>
           </motion.div>
 
           <motion.h1 className="hero-title" variants={itemVariants}>
@@ -132,7 +132,7 @@ const Hero = () => {
           </motion.p>
 
           <motion.p className="hero-description" variants={itemVariants}>
-            Join the ultimate 30-hour hackathon experience where innovation meets creativity.
+            Join the ultimate 24-hour hackathon experience where innovation meets creativity.
             Build groundbreaking solutions, collaborate with brilliant minds, and compete for amazing prizes.
           </motion.p>
 

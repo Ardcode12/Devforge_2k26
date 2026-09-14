@@ -202,7 +202,7 @@ const Timeline = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="section-label">Event Schedule</span>
-          <h2 className="section-title">30 Hours of Innovation</h2>
+          <h2 className="section-title">24 Hours of Innovation</h2>
           <p className="section-description">
             A meticulously crafted schedule to maximize creativity, learning, and building
           </p>
@@ -225,7 +225,7 @@ const Timeline = () => {
           </button>
           <div className="day-connector">
             <div className="connector-line"></div>
-            <div className="connector-hours">30 HRS</div>
+            <div className="connector-hours">24 HRS</div>
             <div className="connector-line"></div>
           </div>
           <button
@@ -309,8 +309,8 @@ const Timeline = () => {
           </div>
           <div className="progress-labels">
             <span>Start</span>
-            <span>15 Hours</span>
-            <span>30 Hours</span>
+            <span>12 Hours</span>
+            <span>24 Hours</span>
           </div>
         </motion.div>
       </div>

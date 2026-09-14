@@ -29,7 +29,7 @@ const FAQ = () => {
     },
     {
       question: 'Will food and accommodation be provided?',
-      answer: 'Yes! We will provide meals, snacks, and beverages throughout the 30-hour event. Overnight accommodations will be arranged for participants who need them.',
+      answer: 'Yes! We will provide meals, snacks, and beverages throughout the 24-hour event. Overnight accommodations will be arranged for participants who need them.',
     },
     {
       question: 'Can I start working on my project before the hackathon?',

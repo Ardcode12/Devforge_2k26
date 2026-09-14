@@ -26,7 +26,7 @@ const Register = () => {
   };
 
   const benefits = [
-    'Access to 30-hour hackathon',
+    'Access to 24-hour hackathon',
     'Free meals & refreshments',
     'Expert mentorship sessions',
     'Networking opportunities',

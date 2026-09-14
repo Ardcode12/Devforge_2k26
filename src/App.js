@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import Intro from './components/Intro';
 import Loading from './components/Loading';
 import BackgroundAudio from './components/BackgroundAudio';
 import Navbar from './components/Navbar';
@@ -13,12 +12,7 @@ import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
 function App() {
-  const [showIntro, setShowIntro] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-
-  const handleIntroComplete = () => {
-    setShowIntro(false);
-  };
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -26,9 +20,7 @@ function App() {
 
   return (
     <>
-      {showIntro ? (
-        <Intro onComplete={handleIntroComplete} />
-      ) : isLoading ? (
+      {isLoading ? (
         <Loading onComplete={handleLoadingComplete} />
       ) : (
         <div className="App">

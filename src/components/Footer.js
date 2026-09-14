@@ -42,7 +42,7 @@ const Footer = () => {
               </span>
             </a>
             <p className="footer-tagline">
-              The ultimate 30-hour hackathon experience where innovation meets creativity.
+              The ultimate 24-hour hackathon experience where innovation meets creativity.
             </p>
             
           </motion.div>
