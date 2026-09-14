@@ -6,8 +6,10 @@ import './Footer.css';
 const Footer = () => {
   const quickLinks = [
     { name: 'About', href: '#about' },
+    { name: 'Domains', href: '#domains' },
     { name: 'Timeline', href: '#timeline' },
     { name: 'Prizes', href: '#prizes' },
+    { name: 'Coordinators', href: '#coordinators' },
     { name: 'FAQ', href: '#faq' },
   ];
 

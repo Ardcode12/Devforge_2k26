@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Clock, Coffee, Users, Code, Award, PartyPopper,
+  Clock, Coffee, Code, Award, PartyPopper,
   Sunrise, Moon, Utensils, Lightbulb, Trophy,
   ChevronLeft, ChevronRight
 } from 'lucide-react';
@@ -15,105 +15,112 @@ const Timeline = () => {
       {
         time: '09:00 AM - 09:30 AM',
         title: 'Inaugural',
-        description: 'Welcome address, rules briefing, and kick-off for DevForge 2K26',
+        description: 'Welcome address, briefing, and official kick-off for DevForge 2K26',
         icon: <PartyPopper size={26} />,
         type: 'ceremony',
       },
       {
-        time: '09:30 AM',
-        title: 'Coding Begins',
-        description: 'The clock starts! Complete focus on building your innovative solutions',
+        time: '09:30 AM - 10:45 AM',
+        title: 'Coding',
+        description: 'The clock starts! Complete focus on ideation and initial architecture',
         icon: <Code size={26} />,
         type: 'start',
       },
       {
         time: '10:45 AM - 11:00 AM',
-        title: 'Break (1)',
+        title: 'Refreshment',
         description: 'Take a quick breather and refresh your minds',
         icon: <Coffee size={26} />,
         type: 'break',
       },
       {
-        time: '11:00 AM - 01:00 PM',
+        time: '11:00 AM - 11:30 AM',
+        title: 'Coding',
+        description: 'Continue development and sprint towards mentoring prep',
+        icon: <Code size={26} />,
+        type: 'hack',
+      },
+      {
+        time: '11:30 AM - 01:00 PM',
         title: 'Mentoring Session',
-        description: 'Get expert guidance and validate your technical approach',
+        description: 'Get expert guidance and validate your technical approach with industry mentors',
         icon: <Lightbulb size={26} />,
         type: 'mentor',
       },
       {
         time: '01:00 PM - 02:00 PM',
         title: 'Lunch',
-        description: 'Refuel with delicious food before the first evaluation',
+        description: 'Refuel and recharge before the afternoon evaluation',
         icon: <Utensils size={26} />,
         type: 'break',
       },
       {
-        time: '02:00 PM - 04:30 PM',
-        title: '1st Round Evaluation',
-        description: 'Initial review of your project idea and basic setup by the judges',
-        icon: <Award size={26} />,
-        type: 'presentation',
-      },
-      {
-        time: '04:30 PM - 05:00 PM',
-        title: 'Break (2)',
-        description: 'Evening tea and snacks',
-        icon: <Coffee size={26} />,
-        type: 'break',
-      },
-      {
-        time: '05:00 PM - 06:30 PM',
-        title: 'Coding Resumes',
-        description: 'Implement feedback and start building the core features',
+        time: '02:00 PM - 02:30 PM',
+        title: 'Coding',
+        description: 'Refine core components and prepare initial prototype demo',
         icon: <Code size={26} />,
         type: 'hack',
       },
       {
-        time: '06:30 PM - 08:00 PM',
-        title: '2nd Mentoring Session',
-        description: 'Sorting out the bugs and refining project flow',
-        icon: <Users size={26} />,
-        type: 'mentor',
-      },
-      {
-        time: '08:00 PM - 09:00 PM',
-        title: 'Dinner',
-        description: 'Evening feast and networking session with other teams',
-        icon: <Utensils size={26} />,
-        type: 'break',
-      },
-      {
-        time: '09:00 PM - 11:00 PM',
-        title: 'Coding Resumes & 2nd Round Evaluation',
-        description: 'Late night progress check while you continue hacking',
+        time: '02:30 PM - 04:00 PM',
+        title: 'Evaluation 1',
+        description: 'First round review of project architecture and idea feasibility by judges',
         icon: <Award size={26} />,
         type: 'presentation',
       },
       {
-        time: '11:00 PM - 12:00 AM',
-        title: 'Culturals / DJ',
-        description: 'Unwind and enjoy the midnight music to recharge',
-        icon: <PartyPopper size={26} />,
-        type: 'ceremony',
-      },
-      {
-        time: '12:00 AM - 02:00 AM',
-        title: 'Coding Resumes',
-        description: 'The midnight sprint begins',
-        icon: <Moon size={26} />,
-        type: 'hack',
-      },
-      {
-        time: '02:00 AM - 02:30 AM',
-        title: 'Break (3)',
-        description: 'Stretch your legs and grab some late night snacks',
+        time: '04:00 PM - 04:30 PM',
+        title: 'Refreshment',
+        description: 'Evening snacks and tea break to re-energize',
         icon: <Coffee size={26} />,
         type: 'break',
       },
       {
-        time: '02:30 AM - 06:00 AM',
-        title: 'Coding Resumes',
-        description: 'Pushing through the hardest hours of the night',
+        time: '06:00 PM - 07:00 PM',
+        title: 'Coding',
+        description: 'Incorporate judge feedback and build key functional features',
+        icon: <Code size={26} />,
+        type: 'hack',
+      },
+      {
+        time: '08:00 PM - 09:00 PM',
+        title: 'Dinner',
+        description: 'Feast and network with fellow participants before the overnight phase',
+        icon: <Utensils size={26} />,
+        type: 'break',
+      },
+      {
+        time: '09:00 PM - 11:30 PM',
+        title: 'Coding & Evaluation 2',
+        description: 'Midway sprint and second checkpoint evaluation with the panel',
+        icon: <Award size={26} />,
+        type: 'presentation',
+      },
+      {
+        time: '11:30 PM - 12:30 AM',
+        title: 'Culturals',
+        description: 'Unwind and recharge with cultural entertainment and music',
+        icon: <PartyPopper size={26} />,
+        type: 'ceremony',
+      },
+      {
+        time: '12:30 AM - 02:30 AM',
+        title: 'Coding',
+        description: 'Midnight coding sprint pushing core logic and integrations',
+        icon: <Moon size={26} />,
+        type: 'hack',
+      },
+      {
+        time: '02:30 AM - 03:00 AM',
+        title: 'Refreshment',
+        description: 'Late night fuel, tea/coffee, and snacks',
+        icon: <Coffee size={26} />,
+        type: 'break',
+      },
+      {
+        time: '03:00 AM - 06:00 AM',
+        title: 'Coding',
+        description: 'Deep overnight coding and polishing through the quiet hours',
         icon: <Code size={26} />,
         type: 'hack',
       },
@@ -122,63 +129,35 @@ const Timeline = () => {
       {
         time: '06:00 AM - 08:00 AM',
         title: 'Break',
-        description: 'Take a well-deserved rest or shower',
+        description: 'Morning break, freshen up, and rest',
         icon: <Sunrise size={26} />,
         type: 'break',
       },
       {
         time: '08:00 AM - 08:45 AM',
         title: 'Breakfast',
-        description: 'Early morning breakfast for the dedicated coders',
+        description: 'Nutritious morning breakfast before the final review',
         icon: <Utensils size={26} />,
         type: 'break',
       },
       {
         time: '09:00 AM - 10:45 AM',
-        title: '3rd Round Evaluation',
-        description: 'Checking the fully functional prototype before the final stretch',
+        title: 'Final Evaluation',
+        description: 'Comprehensive evaluation and live demo to the grand jury',
         icon: <Award size={26} />,
         type: 'presentation',
       },
       {
         time: '10:45 AM - 11:00 AM',
-        title: 'Break (4)',
-        description: 'Brief refreshment break',
+        title: 'Refreshment',
+        description: 'Post-evaluation tea and refreshment break',
         icon: <Coffee size={26} />,
         type: 'break',
       },
       {
-        time: '11:00 AM - 01:00 PM',
-        title: 'Coding Resumes',
-        description: 'Final polishing phase and deployment',
-        icon: <Code size={26} />,
-        type: 'hack',
-      },
-      {
-        time: '01:00 PM - 02:00 PM',
-        title: 'Lunch',
-        description: 'Last meal before the final presentations',
-        icon: <Utensils size={26} />,
-        type: 'break',
-      },
-      {
-        time: '02:00 PM - 03:30 PM',
-        title: 'Final Round Evaluation',
-        description: 'Pitch your finalized built solution to the panel',
-        icon: <Award size={26} />,
-        type: 'presentation',
-      },
-      {
-        time: '03:30 PM - 04:00 PM',
-        title: 'Break & Panel Discussion',
-        description: 'Relax and listen to insights from our industry experts',
-        icon: <Users size={26} />,
-        type: 'mentor',
-      },
-      {
-        time: '04:00 PM - 04:30 PM',
+        time: '11:30 AM - 12:30 PM',
         title: 'Valedictory',
-        description: 'Awards ceremony, prize distribution, and concluding remarks',
+        description: 'Awards ceremony, cash prizes distribution, and closing celebration',
         icon: <Trophy size={26} />,
         type: 'ceremony',
       },
@@ -221,7 +200,7 @@ const Timeline = () => {
           >
             <span className="day-number">01</span>
             <span className="day-text">Day One</span>
-            <span className="day-date">April 18</span>
+            <span className="day-date">Sept 22</span>
           </button>
           <div className="day-connector">
             <div className="connector-line"></div>
@@ -234,7 +213,7 @@ const Timeline = () => {
           >
             <span className="day-number">02</span>
             <span className="day-text">Day Two</span>
-            <span className="day-date">April 19</span>
+            <span className="day-date">Sept 23</span>
           </button>
         </motion.div>
 

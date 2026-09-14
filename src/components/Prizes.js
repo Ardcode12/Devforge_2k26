@@ -1,122 +1,86 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Medal, Brain, Code2, Smartphone, Building2 } from 'lucide-react';
+import { Trophy, Award, Gift } from 'lucide-react';
 import './Prizes.css';
 
 const Prizes = () => {
-  const domainPrizes = [
+  const perks = [
     {
-      domain: 'Machine Learning',
-      icon: <Brain size={28} />,
-      color: '#E8C36A',
-      prizes: [
-        { position: '1st Place', icon: <Trophy size={24} /> },
-        { position: '2nd Place', icon: <Medal size={24} /> },
-      ],
+      icon: <Trophy size={26} />,
+      title: 'Grand Cash Rewards',
+      description: 'Total ₹8,000 cash pool awarded to top winning teams.',
     },
     {
-      domain: 'Full Stack & Cyber Security',
-      icon: <Code2 size={28} />,
-      color: '#C1121F',
-      prizes: [
-        { position: '1st Place', icon: <Trophy size={24} /> },
-        { position: '2nd Place', icon: <Medal size={24} /> },
-      ],
+      icon: <Award size={26} />,
+      title: 'Certificates for All',
+      description: 'Official Certificate of Participation for every verified attendee.',
     },
     {
-      domain: 'Mobile Application',
-      icon: <Smartphone size={28} />,
-      color: '#4A90D9',
-      prizes: [
-        { position: '1st Place', icon: <Trophy size={24} /> },
-        { position: '2nd Place', icon: <Medal size={24} /> },
-      ],
-    },
-    {
-      domain: 'Enterprise Development',
-      icon: <Building2 size={28} />,
-      color: '#7C5CFF',
-      prizes: [
-        { position: '1st Place', icon: <Trophy size={24} /> },
-        { position: '2nd Place', icon: <Medal size={24} /> },
-      ],
+      icon: <Gift size={26} />,
+      title: 'Swag & Mentorship',
+      description: 'Trophies, tech goodies, and direct industry mentorship.',
     },
   ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
-    },
-  };
 
   return (
     <section id="prizes" className="prizes">
       <div className="prizes-container">
+        {/* Main Hero Prize Card */}
         <motion.div
-          className="section-header"
+          className="prize-showcase-card"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-label">Rewards</span>
-          <h2 className="section-title">Prizes For All Domains</h2>
-          <p className="section-description">
-            Exciting cash prizes for winners in each domain. Every participant receives a certificate!
+          <div className="prize-ambient-glow"></div>
+
+          {/* Trophy Badge */}
+          <div className="prize-trophy-circle">
+            <Trophy size={42} className="trophy-icon" />
+          </div>
+
+          {/* Tag Pill */}
+          <div className="prize-tag-pill">
+            <span>DEVFORGE 2026</span>
+          </div>
+
+          {/* Amount */}
+          <h2 className="prize-amount">₹8,000</h2>
+
+          {/* Subtitle */}
+          <p className="prize-pool-label">TOTAL CASH PRIZE POOL</p>
+
+          {/* Description */}
+          <p className="prize-pool-description">
+            Compete for cash rewards, winner trophies, certificates, and exciting perks across DevForge 2026!
           </p>
         </motion.div>
 
+        {/* Bottom Feature Perks */}
         <motion.div
-          className="domain-prizes-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {domainPrizes.map((domain, index) => (
-            <motion.div
-              key={index}
-              className="domain-prize-card"
-              variants={itemVariants}
-              whileHover={{ y: -10 }}
-              style={{ '--domain-color': domain.color }}
-            >
-              <div className="domain-header">
-                <div className="domain-icon">{domain.icon}</div>
-                <h3 className="domain-name">{domain.domain}</h3>
-              </div>
-              <div className="domain-prizes-list">
-                {domain.prizes.map((prize, i) => (
-                  <div key={i} className={`prize-row ${i === 0 ? 'first' : 'second'}`}>
-                    <div className="prize-icon-small">{prize.icon}</div>
-                    <span className="prize-position-text">{prize.position}</span>
-                    <span className="prize-label">Cash Prize</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          className="prizes-note"
+          className="prize-perks-grid"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <p>Participation certificates will be provided to all participants</p>
+          {perks.map((perk, index) => (
+            <motion.div
+              key={index}
+              className="prize-perk-card"
+              whileHover={{ y: -5, borderColor: 'rgba(212, 175, 55, 0.4)' }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="perk-icon-wrapper">
+                {perk.icon}
+              </div>
+              <div className="perk-content">
+                <h4 className="perk-title">{perk.title}</h4>
+                <p className="perk-description">{perk.description}</p>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

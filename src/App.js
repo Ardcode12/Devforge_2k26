@@ -8,6 +8,7 @@ import About from './components/About';
 import Domains from './components/Domains';
 import Timeline from './components/Timeline';
 import Prizes from './components/Prizes';
+import Coordinators from './components/Coordinators';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
@@ -31,6 +32,7 @@ function App() {
             <Domains />
             <Timeline />
             <Prizes />
+            <Coordinators />
             <FAQ />
           </main>
           <Footer />
