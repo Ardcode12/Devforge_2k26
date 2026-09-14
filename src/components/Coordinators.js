@@ -29,18 +29,8 @@ const Coordinators = () => {
 
   const domainCoordinators = [
     {
-      domain: 'Fullstack with Cyber',
-      tag: 'FS',
-      color: '#C1121F',
-      icon: <Shield size={22} />,
-      members: [
-        { name: 'Krithika S', phone: '63799624' },
-        { name: 'Shehsanth', phone: '8072953989' },
-      ],
-    },
-    {
-      domain: 'Enterprise App Dev',
-      tag: 'EA',
+      domain: 'EnterpriseX',
+      tag: 'EX',
       color: '#7C5CFF',
       icon: <Globe size={22} />,
       members: [
@@ -49,18 +39,28 @@ const Coordinators = () => {
       ],
     },
     {
-      domain: 'AI / ML',
+      domain: 'CyberStack',
+      tag: 'CS',
+      color: '#C1121F',
+      icon: <Shield size={22} />,
+      members: [
+        { name: 'Krithika S', phone: '63799624' },
+        { name: 'Shehsanth', phone: '8072953989' },
+      ],
+    },
+    {
+      domain: 'AI Innovate',
       tag: 'AI',
       color: '#E8C36A',
       icon: <Cpu size={22} />,
       members: [
         { name: 'Shreya J', phone: '9842484828' },
-        { name: 'Arnald', phone:'9080176624' },
+        { name: 'Arnald', phone: '9080176624' },
       ],
     },
     {
-      domain: 'Mobile App',
-      tag: 'MB',
+      domain: 'MobileX',
+      tag: 'MX',
       color: '#4A90D9',
       icon: <Smartphone size={22} />,
       members: [

@@ -12,25 +12,12 @@ const Domains = () => {
 
   const domains = [
     {
-      code: 'FS',
-      tag: 'FS TRACK',
-      icon: <Code2 size={32} />,
-      name: 'Fullstack with Cyber',
-      color: '#C1121F',
-      description: 'Engineer complete web applications end to end while securing them against modern threats and vulnerabilities.',
-      coordinators: [
-        { name: 'Krithika S', phone: '63799624' },
-        { name: 'Shehsanth', phone: '8072953989' },
-      ],
-      problems: [],
-    },
-    {
-      code: 'EA',
-      tag: 'EA TRACK',
+      code: 'EX',
+      tag: 'Build. Scale. Deploy.',
       icon: <Building2 size={32} />,
-      name: 'Enterprise App Dev',
+      name: 'EnterpriseX',
       color: '#7C5CFF',
-      description: 'Design production-grade enterprise systems, from development through deployment, scaling, and operations.',
+      description: 'Build. Scale. Deploy. Design production-grade enterprise systems, from development through deployment, scaling, and operations.',
       coordinators: [
         { name: 'Mohan raja', phone: '9003948329' },
         { name: 'Sounderhari', phone: '9489669639' },
@@ -38,12 +25,25 @@ const Domains = () => {
       problems: [],
     },
     {
+      code: 'CS',
+      tag: 'Build. Secure. Defend.',
+      icon: <Code2 size={32} />,
+      name: 'CyberStack',
+      color: '#C1121F',
+      description: 'Build. Secure. Defend. Engineer complete web applications end to end while securing them against modern threats and vulnerabilities.',
+      coordinators: [
+        { name: 'Krithika S', phone: '63799624' },
+        { name: 'Shehsanth', phone: '8072953989' },
+      ],
+      problems: [],
+    },
+    {
       code: 'AI',
-      tag: 'AI TRACK',
+      tag: 'Think. Learn. Create.',
       icon: <Brain size={32} />,
-      name: 'AI / ML',
+      name: 'AI Innovate',
       color: '#E8C36A',
-      description: 'Build intelligent systems that learn from data and solve real-world problems with AI and machine learning.',
+      description: 'Think. Learn. Create. Build intelligent systems that learn from data and solve real-world problems with AI and machine learning.',
       coordinators: [
         { name: 'Shreya J', phone: '9842484828' },
         { name: 'Arnald', phone: '9080176624' },
@@ -51,12 +51,12 @@ const Domains = () => {
       problems: [],
     },
     {
-      code: 'MB',
-      tag: 'MB TRACK',
+      code: 'MX',
+      tag: 'Mobile Application Development',
       icon: <Smartphone size={32} />,
-      name: 'Mobile App',
+      name: 'MobileX',
       color: '#4A90D9',
-      description: 'Create innovative mobile applications that solve real-world problems and deliver exceptional user experiences.',
+      description: 'Mobile Application Development. Create innovative mobile applications that solve real-world problems and deliver exceptional user experiences.',
       coordinators: [
         { name: 'Dharnish BM', phone: '9842375676' },
         { name: 'Navaneethan', phone: '9342512455' },

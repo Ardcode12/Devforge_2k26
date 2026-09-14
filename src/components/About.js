@@ -116,7 +116,7 @@ const About = () => {
             <span className="stat-label">Domains</span>
           </div>
           <div className="stat-item">
-            <span className="stat-number">TBD</span>
+            <span className="stat-number">8</span>
             <span className="stat-label">Problem Statements</span>
           </div>
         </motion.div>
