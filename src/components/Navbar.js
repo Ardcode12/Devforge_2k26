@@ -84,7 +84,7 @@ const Navbar = () => {
             </motion.a>
           ))}
           <motion.a
-            href="https://forms.gle/JJegGzSRa9tfoh4u7"
+            href="https://docs.google.com/forms/d/1rAufiXSigsOi2sbpIni9_zlw7WC2X2HYR4zhCmJqHjc/edit"
             target="_blank"
             rel="noopener noreferrer"
             className="nav-register"
